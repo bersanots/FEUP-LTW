@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.1.1 on ter nov 6 11:55:59 2018
+-- File generated with SQLiteStudio v3.1.1 on ter nov 6 11:59:05 2018
 --
 -- Text encoding used: System
 --
@@ -39,7 +39,7 @@ CREATE TABLE User (
     id         INTEGER PRIMARY KEY,
     name       VARCHAR NOT NULL,
     email      VARCHAR NOT NULL
-                       CHECK (email LIKE "%@.%.%"),
+                       CHECK (email LIKE "%@%.%"),
     password   VARCHAR NOT NULL,
     profilePic BLOB
 );
