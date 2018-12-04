@@ -1,6 +1,6 @@
 <?php
-  include_once("session.php");
-  include_once("users.php");
+  include_once("../database/session.php");
+  include_once("../database/users.php");
 
   if(successfulLogin($_POST['id'], $_POST['password'])){
   	setCurrentUser($_POST['id']);

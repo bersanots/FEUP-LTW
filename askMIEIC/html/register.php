@@ -23,6 +23,9 @@
           FEUP ID <input type="text" name="id" required="required">
         </label>
         <label>
+          Full name <input type="text" name="name" required="required">
+        </label>
+        <label>
           E-mail <input type="email" name="email" required="required">
         </label>
         <label>
