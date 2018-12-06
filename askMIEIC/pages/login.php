@@ -5,7 +5,7 @@
   ?>
   <section id="login">
       <h1>Login</h1>
-      <form action="login_action.php" method="post">
+      <form action="../actions/login_action.php" method="post">
         <label>
           FEUP ID <input type="text" name="id" required="required">
         </label>

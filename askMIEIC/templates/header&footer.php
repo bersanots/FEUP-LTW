@@ -10,8 +10,8 @@
         <title>askMIEIC</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="style.css" rel="stylesheet">
-        <link rel="shortcut icon" href="./favicon.ico" />
+        <link href="../css/style.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../css/favicon.ico" />
     </head>
     
     <body>
@@ -19,13 +19,13 @@
             <h1>askMIEIC</h1>
             <h2>The place to ask your questions</h2>
             <div id="signup">
-                <a href="main.php">Main</a>
+                <a href="../pages/main.php">Main</a>
                 <?php
                 if(getUserID() == null) { ?>
-                    <a href="register.php">Register</a>
-                    <a href="login.php">Login</a> 
+                    <a href="../pages/register.php">Register</a>
+                    <a href="../pages/login.php">Login</a> 
                 <?php } else { ?>
-                    <a href="logout_action.php">Logout</a> 
+                    <a href="../actions/logout_action.php">Logout</a> 
                 <?php } ?>
             </div>
         </header>

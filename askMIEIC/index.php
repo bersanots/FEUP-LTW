@@ -1,9 +1,9 @@
 <?php
-  include_once('./html/session.php');
+  include_once('database/session.php');
   
   if(isset($_SESSION['id'])){
-    header("Location:./html/main.php");
+    header("Location:pages/main.php");
   } else {
-    header("Location:./html/login.php");
+    header("Location:pages/login.php");
   }
 ?>
