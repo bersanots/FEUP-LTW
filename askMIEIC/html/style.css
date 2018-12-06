@@ -68,7 +68,7 @@ body {
     text-decoration: none;  
   }
   
-  body > header #signup a:first-child {
+  body > header #signup a:nth-child(1),body > header #signup a:nth-child(2){
     border-right: 1px solid white;
   }
   
