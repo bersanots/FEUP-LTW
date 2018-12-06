@@ -19,8 +19,8 @@
             <h1>askMIEIC</h1>
             <h2>The place to ask your questions</h2>
             <div id="signup">
+                <a href="main.php">Main</a>
                 <?php
-                echo(getUserID());
                 if(getUserID() == null) { ?>
                     <a href="register.php">Register</a>
                     <a href="login.php">Login</a> 
@@ -29,6 +29,10 @@
                 <?php } ?>
             </div>
         </header>
+
+<?php } ?>
+
+<?php function draw_menu(){ ?>
         <nav id="menu">
             <ul>
                 <li><a href="../index.php">1st year</a></li>
@@ -53,7 +57,7 @@
                 <p>(Introduzir descrição do objetivo da pag)</p>
             </article>
         </section>  
-        <?php } ?>
+<?php } ?>
 
 <?php function draw_footer(){  ?>
 
