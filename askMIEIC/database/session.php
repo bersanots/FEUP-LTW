@@ -15,13 +15,5 @@
        } else {
            return null;
        }
-   }   
-
-  if (isset($_SESSION['error'])) {
-      $error = $_SESSION['error'];
-      unset($_SESSION['error']);
-  } else {
-      $error = "";
-  }
-  
+   }     
 ?>

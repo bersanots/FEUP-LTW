@@ -5,4 +5,3 @@
     draw_menu();
     draw_footer();
 ?>
-</html>
