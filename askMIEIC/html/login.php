@@ -11,7 +11,7 @@
     <header>
       <h1></h1>
       <div id="signup">
-        <a href="main.html">Main</a>
+        <a href="main.php">Main</a>
         <a href="register.php">Register</a>
         <a href="login.php">Login</a>
       </div>

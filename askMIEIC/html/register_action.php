@@ -13,7 +13,7 @@
   else if (createUser($_POST['id'], $_POST['name'], $_POST['email'], $_POST['password'])) {
     setCurrentUser($_POST['id']);
     echo 'User successfully registered!';
- 	  header("Location: main.html");	
+ 	  header("Location: main.php");	
   }
   else{
   	$_SESSION['error'] = 'error';

@@ -23,9 +23,5 @@
   } else {
       $error = "";
   }
-
-  if (getUserID() === null && basename($_SERVER['PHP_SELF']) != 'register.php') {
-      header('Location: login.php');
-  }
   
 ?>

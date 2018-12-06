@@ -4,7 +4,7 @@
 
   if(successfulLogin($_POST['id'], $_POST['password'])){
   	setCurrentUser($_POST['id']);
-	header("Location: main.html");
+	header("Location: main.php");
   }
   else {
 	$_SESSION['error'] = 'Incorrect ID or password';
