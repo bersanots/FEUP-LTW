@@ -35,20 +35,27 @@
 <?php function draw_menu(){ ?>
         <nav id="menu">
             <ul>
-                <li><a href="../index.php">1st year</a></li>
-                <li><a href="../index.php">2nd year</a></li>
-                <li><a href="../index.php">3rd year</a></li>
-                <li><a href="../index.php">4th year</a></li>
-                <li><a href="../index.php">5th year</a></li>
+                <li><a href="../index.php">st year</a></li>
+                <li><a href="../index.php">nd year</a></li>
+                <li><a href="../index.php">rd year</a></li>
+                <li><a href="../index.php">th year</a></li>
+                <li><a href="../index.php">th year</a></li>
             </ul>
         </nav>
-        <section id="init_description">
+        <aside id="profile">
+          <div>
+            <h1><a href="#">Profile</a></h1>
+            <p>To be done...</p>
+          </div>        
+        </aside>
+        <section id="main_section">
+          <section id="init_description">
             <article>
                 <h1>ASKMIEIC O que é??</h1>
                 <p> Somos uma plataforma de dúvidas para todos os alunos do MIEIC, feita por alunos para os alunos!</p>
             </article>
-        </section>
-        <section id="objective">
+          </section>
+          <section id="objective">
             <article>
                 <header>
                     <h1>O nosso Objetivo</h1>
@@ -56,6 +63,7 @@
                 <img src="" alt="">
                 <p>(Introduzir descrição do objetivo da pag)</p>
             </article>
+          </section>
         </section>  
 <?php } ?>
 
