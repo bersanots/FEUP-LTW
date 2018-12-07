@@ -25,7 +25,7 @@
                     <a href="../pages/register.php">Register</a>
                     <a href="../pages/login.php">Login</a> 
                 <?php } else { ?>
-                    <a href="../pages/profile.php">Edit Profile</a>
+                    <a href="../pages/edit_profile.php">Edit Profile</a>
                     <a href="../actions/logout_action.php">Logout</a> 
                 <?php } ?>
             </div>

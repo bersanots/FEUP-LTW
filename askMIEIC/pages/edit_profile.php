@@ -4,24 +4,20 @@
 
   draw_header();
   ?>
-  <section id="profile">
-      <h1>Profile</h1>
+  <section id="edit_profile">
+      <h1>Edit your profile</h1>
       <form action="../actions/profile_action.php" method="post">
-
-        <?php 
-        $sql = "SELECT id, name, email, password FROM MyGuests";
-        ?>
-        <label>
-          FEUP ID <input type="text" name="id" required="required">
-        </label>
         <label>
           Email <input type="text" name="email" required="required">
         </label>
         <label>
-          Password <input type="password" name="password" required="required">
+          Old Password <input type="password" name="old_password" required="required">
         </label>
         <label>
-          Confirm the Password <input type="password" name="confirm_password" required="required">
+          New Password <input type="password" name="new_password" required="required">
+        </label>
+        <label>
+          Confirm the new password <input type="password" name="confirm_new_password" required="required">
         </label>
         <input type="submit" value="Profile">
       </form>
