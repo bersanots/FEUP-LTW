@@ -1,5 +1,6 @@
 <?php
   include_once('../templates/header&footer.php');
+  include_once("../database/session.php");
   include_once('../database/users.php');
 
   draw_header();
@@ -8,16 +9,19 @@
       <h1>Edit your profile</h1>
       <form action="../actions/profile_action.php" method="post">
         <label>
-          Email <input type="email" name="email" required="required">
+          Full name <input type="text" name="name" placeholder=<?php echo getUser(getUserID())['name']?>>
         </label>
         <label>
-          Old Password <input type="password" name="old_password" required="required">
+          E-mail <input type="email" name="email" placeholder=<?php echo getUser(getUserID())['email']?>>
         </label>
         <label>
-          New Password <input type="password" name="new_password" required="required">
+          Old Password <input type="password" name="old_password">
         </label>
         <label>
-          Confirm the new Password <input type="password" name="confirm_new_password" required="required">
+          New Password <input type="password" name="new_password">
+        </label>
+        <label>
+          Confirm the new Password <input type="password" name="confirm_new_password">
         </label>
         <input type="submit" value="Save">
       </form>

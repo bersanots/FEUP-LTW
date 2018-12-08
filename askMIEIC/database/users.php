@@ -76,6 +76,17 @@
     }
   }
 
+  function changeName($id, $new_name){
+    global $db;
+    try {
+      $stmt = $db->prepare('UPDATE User SET name = ? WHERE id = ?');
+      return $stmt->execute(array($new_name, $id));
+    }
+    catch(PDOException $e) {
+      return false;
+    }
+  }
+
   function changeEmail($id, $new_email){
     global $db;
     try {
