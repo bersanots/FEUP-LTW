@@ -48,7 +48,7 @@
           if(getUserID() !== null){?>
             <aside id="profile">
               <div>
-                <img id="profile_pic" src="../images/<?=getUser(getUserID())['profilePic']?>" alt="Profile picture">
+                <img id="profile_pic" src="../images/thumbs_medium/<?=getUser(getUserID())?>" alt="Profile picture">
                 <p><?php echo getUser(getUserID())['name']?></p>
               </div>        
             </aside>

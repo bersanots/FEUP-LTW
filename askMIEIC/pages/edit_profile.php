@@ -12,6 +12,9 @@
           Full name <input type="text" name="name" placeholder="<?php echo getUser(getUserID())['name']?>">
         </label>
         <label>
+          Picture <input type="file" name="picture">
+        </label>
+        <label>
           E-mail <input type="email" name="email" placeholder="<?php echo getUser(getUserID())['email']?>">
         </label>
         <label>
