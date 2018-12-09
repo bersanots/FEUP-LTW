@@ -1,6 +1,7 @@
 <?php function draw_header(){
     
     include_once('../database/session.php');
+    include_once('../database/users.php');
 
     ?>
     <!DOCTYPE html>
@@ -19,13 +20,13 @@
             <h1>askMIEIC</h1>
             <h2>The place to ask your questions</h2>
             <div id="signup">
-                <a href="../pages/main.php">Main</a>
+                <a href="../pages/main.php">Home</a>
                 <?php
                 if(getUserID() == null) { ?>
                     <a href="../pages/register.php">Register</a>
                     <a href="../pages/login.php">Login</a> 
                 <?php } else { ?>
-                    <a href="../pages/edit_profile.php">Edit Profile</a>
+                    <a href="../pages/profile.php">Profile</a>
                     <a href="../actions/logout_action.php">Logout</a> 
                 <?php } ?>
             </div>
@@ -43,12 +44,15 @@
                 <li><a href="../index.php">th year</a></li>
             </ul>
         </nav>
-        <aside id="profile">
-          <div>
-            <h1><a href="#">Profile</a></h1>
-            <p>To be done...</p>
-          </div>        
-        </aside>
+        <?php
+          if(getUserID() !== null){?>
+            <aside id="profile">
+              <div>
+                <img id="profile_pic" src="../images/<?=getUser(getUserID())['profilePic']?>" alt="Profile picture">
+                <p><?php echo getUser(getUserID())['name']?></p>
+              </div>        
+            </aside>
+        <?php } ?>
         <section id="main_section">
           <section id="init_description">
             <article>

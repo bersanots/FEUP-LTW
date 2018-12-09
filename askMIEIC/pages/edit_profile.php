@@ -9,10 +9,10 @@
       <h1>Edit your profile</h1>
       <form action="../actions/profile_action.php" method="post">
         <label>
-          Full name <input type="text" name="name" placeholder=<?php echo getUser(getUserID())['name']?>>
+          Full name <input type="text" name="name" placeholder="<?php echo getUser(getUserID())['name']?>">
         </label>
         <label>
-          E-mail <input type="email" name="email" placeholder=<?php echo getUser(getUserID())['email']?>>
+          E-mail <input type="email" name="email" placeholder="<?php echo getUser(getUserID())['email']?>">
         </label>
         <label>
           Old Password <input type="password" name="old_password">

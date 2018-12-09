@@ -10,7 +10,7 @@
       changeName($user_id, $_POST['name']);
     if($_POST['email']!=="")
       changeEmail($user_id, $_POST['email']);
-    header("Location: ../pages/main.php");
+    header("Location: ../pages/profile.php");
   }
   else if($current_password == hash('sha256', $_POST['old_password'])){
     if($_POST['new_password'] == $_POST['confirm_new_password']){
@@ -20,7 +20,7 @@
         changeEmail($user_id, $_POST['email']);
       if($_POST['new_password']!=="")
         changePassword($user_id, $_POST['new_password']);
-      header("Location: ../pages/main.php");
+      header("Location: ../pages/profile.php");
     } else {
         $_SESSION['error'] = 'New password did not match the confirmation';
         header("Location:".$_SERVER['HTTP_REFERER']."");
