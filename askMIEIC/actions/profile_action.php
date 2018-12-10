@@ -23,12 +23,12 @@
       header("Location: ../pages/profile.php");
     } else {
         $_SESSION['error'] = 'New password did not match the confirmation';
-        header("Location:".$_SERVER['HTTP_REFERER']."");
+        die(header("Location:".$_SERVER['HTTP_REFERER'].""));
     }
   } else {
 	  $_SESSION['error'] = 'Old password is incorrect';
-	  header("Location:".$_SERVER['HTTP_REFERER']."");
-  }  
+	  die(header("Location:".$_SERVER['HTTP_REFERER'].""));
+  }
 
   // Generate filenames for original, small and medium files
   $originalFileName = "../images/originals/$user_id.png";
@@ -64,4 +64,4 @@
   imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
 
   imagepng($medium, $mediumFileName);
-  ?>
+?>

@@ -22,7 +22,7 @@
       <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
     </section>
     <aside id="picture">
-      <img id="profile_pic" src="../images/thumbs_small/<?=getUserID()?>.png" alt="Profile picture">      
+	  <img id="profile_pic" src="../images/thumbs_small/<?=getUserID()?>.png" alt="Profile picture">       
     </aside>
   
   <?php 

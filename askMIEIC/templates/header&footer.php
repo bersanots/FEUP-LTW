@@ -12,6 +12,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
         <link rel="shortcut icon" href="../css/favicon.ico" />
     </head>
     
@@ -37,7 +38,7 @@
 <?php function draw_menu(){ ?>
         <nav id="menu">
             <ul>
-                <li><a href="../index.php">st year</a></li>
+                <li><a href="../pages/first_year.php">st year</a></li>
                 <li><a href="../index.php">nd year</a></li>
                 <li><a href="../index.php">rd year</a></li>
                 <li><a href="../index.php">th year</a></li>
@@ -48,7 +49,7 @@
           if(getUserID() !== null){?>
             <aside id="profile">
               <div>
-                <img id="profile_pic" src="../images/thumbs_medium/<?=getUser(getUserID())?>" alt="Profile picture">
+                <img id="profile_pic" src="../images/thumbs_medium/<?=getUserID()?>.png" alt="Profile picture">
                 <p><?php echo getUser(getUserID())['name']?></p>
               </div>        
             </aside>

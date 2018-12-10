@@ -28,12 +28,11 @@
     global $db;
     $password_hash = hash('sha256', $password);
     try {
-  	  $stmt = $db->prepare('INSERT INTO User(id, name, email, password, profilePic) VALUES (:ID,:Name,:Email,:Password,:ProfilePic)');
+  	  $stmt = $db->prepare('INSERT INTO User(id, name, email, password) VALUES (:ID,:Name,:Email,:Password)');
   	  $stmt->bindParam(':ID', $id);
   	  $stmt->bindParam(':Name', $name);
       $stmt->bindParam(':Email', $email);
       $stmt->bindParam(':Password', $password_hash);
-      $stmt->bindParam(':ProfilePic', 'default.png');
       return $stmt->execute();
     }
     catch(PDOException $e) {
