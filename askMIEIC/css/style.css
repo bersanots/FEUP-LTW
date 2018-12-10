@@ -79,6 +79,37 @@ body {
   body > header #signup a:first-child {
     padding-left: 0;
   }
+
+  /* aside */
+  aside#profile  {
+    border: 1px solid #046dd5;
+    
+  }
+
+  aside#profile > div h3 {
+    text-align: center;
+    border: 4px outset #044b92;
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /*border-radius: 10px;*/
+    margin: 0 auto;
+    padding: 1rem 0;
+    
+  }
+
+  aside#profile > div h3 a{
+    color: #046dd5;
+    text-decoration: none;
+  }
+
+  aside#profile div img {
+    background-color: white;
+    width: 50%;
+    height: 50%;
+    margin: 1em auto;
+    transform: translateX(50%);
+  }
   
   /* navigation */
   

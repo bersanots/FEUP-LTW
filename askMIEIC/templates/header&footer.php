@@ -48,11 +48,21 @@
           if(getUserID() !== null){?>
             <aside id="profile">
               <div>
+                <h3>Profile</h3>
                 <img id="profile_pic" src="../images/thumbs_medium/<?=getUser(getUserID())?>" alt="Profile picture">
                 <p><?php echo getUser(getUserID())['name']?></p>
               </div>        
             </aside>
-        <?php } ?>
+        <?php } 
+        else {?>
+            <aside id="profile">
+              <div>
+                <h3><a href="../pages/login.php">Profile</a></h3>
+                <img id="profile_pic" src="../images/default.png" alt="Profile picture">
+                <p></p>
+              </div>        
+            </aside>
+        <?php  }?>
         <section id="main_section">
           <section id="init_description">
             <article>
