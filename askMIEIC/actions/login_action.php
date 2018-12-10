@@ -8,6 +8,6 @@
   }
   else {
 	  $_SESSION['error'] = 'Incorrect ID or password';
-	  header("Location:".$_SERVER['HTTP_REFERER']."");
+	  die(header("Location:".$_SERVER['HTTP_REFERER'].""));
   }
 ?>

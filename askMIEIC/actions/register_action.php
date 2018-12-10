@@ -4,11 +4,11 @@
 
   if(existingID($_POST['id'])){
 	  $_SESSION['error'] = 'Existing ID';
-	  header("Location:".$_SERVER['HTTP_REFERER']."");
+	  die(header("Location:".$_SERVER['HTTP_REFERER'].""));
   }
   else if(existingEmail($_POST['email'])){
 	  $_SESSION['error'] = 'Existing Email';
-    header("Location:".$_SERVER['HTTP_REFERER']."");
+    die(header("Location:".$_SERVER['HTTP_REFERER'].""));
   }
   else if (createUser($_POST['id'], $_POST['name'], $_POST['email'], $_POST['password'])) {
     setCurrentUser($_POST['id']);
@@ -17,6 +17,6 @@
   }
   else{
   	$_SESSION['error'] = 'error';
-  	header("Location:".$_SERVER['HTTP_REFERER']."");
+  	die(header("Location:".$_SERVER['HTTP_REFERER'].""));
   }
  ?>
