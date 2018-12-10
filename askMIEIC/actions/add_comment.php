@@ -6,7 +6,8 @@
   if (!isset($_SESSION['id']))
     die(header('Location: ../pages/login.php'));
 
-  addComment($_POST['text'], $_POST['date'], $_POST['post'], $_SESSION['id']);
+  $date = date("d-m-Y");
+  addComment($_POST['text'], $date, $_POST['post'], $_SESSION['id']);
 
   header("Location:".$_SERVER['HTTP_REFERER']."");
 ?>

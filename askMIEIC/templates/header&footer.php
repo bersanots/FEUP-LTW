@@ -49,12 +49,8 @@
           if(getUserID() !== null){?>
             <aside id="profile">
               <div>
-<<<<<<< HEAD
                 <h3>Profile</h3>
-                <img id="profile_pic" src="../images/thumbs_medium/<?=getUser(getUserID())?>" alt="Profile picture">
-=======
                 <img id="profile_pic" src="../images/thumbs_medium/<?=getUserID()?>.png" alt="Profile picture">
->>>>>>> cd2e03fc76423ef0400fa4a645ebe2d72b62a969
                 <p><?php echo getUser(getUserID())['name']?></p>
               </div>        
             </aside>

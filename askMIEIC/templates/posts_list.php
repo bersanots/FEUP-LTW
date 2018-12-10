@@ -22,9 +22,6 @@
           <input type="text" name="title" placeholder="Title">
         </label>
         <textarea name="description">Enter text here...</textarea>
-        <label>
-          Date <input type="date" name="date">
-        </label>
         <input type="submit" value="Create">
       </form>
     </section>
