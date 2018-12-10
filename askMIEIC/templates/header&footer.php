@@ -50,7 +50,7 @@
             <aside id="profile">
               <div>
                 <h3>Profile</h3>
-                <img id="profile_pic" src="../images/thumbs_medium/<?=getUserID()?>.png" alt="Profile picture">
+                <img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture">
                 <p><?php echo getUser(getUserID())['name']?></p>
               </div>        
             </aside>

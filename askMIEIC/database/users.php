@@ -120,4 +120,11 @@
       return false;
     }
   } 
+
+  function getImage($user_id){
+    $path = "../images/originals/$user_id.png";
+    if(file_exists($path)){
+      return $path;
+    } else return "../images/default.png";
+  }
 ?>
