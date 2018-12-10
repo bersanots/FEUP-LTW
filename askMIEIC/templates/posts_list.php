@@ -53,7 +53,6 @@
     <form action="../actions/add_comment.php" method="post">
       <input type="hidden" name="post" value="<?=$post['id']?>">
       <input type="text" name="text" placeholder="Add comment">
-      <input type="date" name="date">
       <input type="submit" value="Add">
     </form>
 
