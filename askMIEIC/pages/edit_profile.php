@@ -7,12 +7,12 @@
   ?>
    <section id="edit_profile">
       <h1>Edit your profile</h1>
-      <form action="../actions/profile_action.php" method="post">
+      <form action="../actions/profile_action.php" method="post" enctype="multipart/form-data">
         <label>
           Full name <input type="text" name="name" placeholder="<?php echo getUser(getUserID())['name']?>">
         </label>
         <label>
-          Picture <input type="file" name="picture">
+          Picture <input type="file" name="image">
         </label>
         <label>
           E-mail <input type="email" name="email" placeholder="<?php echo getUser(getUserID())['email']?>">
