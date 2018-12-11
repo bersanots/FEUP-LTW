@@ -113,12 +113,13 @@
     }
   }
 
-  function addLikeToPost($userID, $postID){
+  function addValueToPost($userID, $postID, $value){
     global $db;
     try {
-  	  $stmt = $db->prepare('INSERT INTO LikePost(idUser, idPost) VALUES (:UserID,:PostID)');
+  	  $stmt = $db->prepare('INSERT INTO ValuePost(idUser, idPost, value) VALUES (:UserID,:PostID,:Value)');
   	  $stmt->bindParam(':UserID', $userID);
-  	  $stmt->bindParam(':PostID', $postID);
+      $stmt->bindParam(':PostID', $postID);
+      $stmt->bindParam(':Value', $value);
       return $stmt->execute();
     }
     catch(PDOException $e) {
@@ -126,12 +127,13 @@
     } 
   }
 
-  function addDislikeToPost($userID, $postID){
+  function addValueToComment($userID, $commentID, $value){
     global $db;
     try {
-  	  $stmt = $db->prepare('INSERT INTO DislikePost(idUser, idPost) VALUES (:UserID,:PostID)');
+  	  $stmt = $db->prepare('INSERT INTO ValueComment(idUser, idComment, value) VALUES (:UserID,:CommentID,:Value)');
   	  $stmt->bindParam(':UserID', $userID);
-  	  $stmt->bindParam(':PostID', $postID);
+      $stmt->bindParam(':CommentID', $commentID);
+      $stmt->bindParam(':Value', $value);
       return $stmt->execute();
     }
     catch(PDOException $e) {
@@ -139,26 +141,48 @@
     } 
   }
 
-  function addLikeToComment($userID, $commentID){
+  function deleteValueFromComment($userID,$commentID) {
     global $db;
     try {
-  	  $stmt = $db->prepare('INSERT INTO LikeComment(idUser, idComment) VALUES (:UserID,:CommentID)');
-  	  $stmt->bindParam(':UserID', $userID);
-  	  $stmt->bindParam(':CommentID', $commentID);
-      return $stmt->execute();
+      $stmt = $db->prepare('DELETE FROM ValueComment WHERE idUser = ? and idComment = ?');
+      $stmt->execute(array($userID,$commentID));
+      return true;
+    }
+    catch(PDOException $e) {
+      return false;
+    }
+  }
+
+  function deleteValueFromPost($userID,$postID) {
+    global $db;
+    try {
+      $stmt = $db->prepare('DELETE FROM ValuePost WHERE idUser = ? and idPost = ?');
+      $stmt->execute(array($userID,$postID));
+      return true;
+    }
+    catch(PDOException $e) {
+      return false;
+    }
+  }
+
+  function getValueFromComment($userID, $commentID){
+    global $db;
+    try {
+  	  $stmt = $db->prepare('SELECT * FROM ValueComment WHERE idComment = ? and idUser = ?');
+      $stmt->execute(array($commentID, $userID));
+      return $stmt->fetch();
     }
     catch(PDOException $e) {
       return false;
     } 
   }
 
-  function addDislikeToComment($userID, $commentID){
+  function getValueFromPost($userID, $postID){
     global $db;
     try {
-  	  $stmt = $db->prepare('INSERT INTO DislikeComment(idUser, idComment) VALUES (:UserID,:CommentID)');
-  	  $stmt->bindParam(':UserID', $userID);
-  	  $stmt->bindParam(':CommentID', $commentID);
-      return $stmt->execute();
+  	  $stmt = $db->prepare('SELECT * FROM ValuePost WHERE idPost = ? and idUser = ?');
+      $stmt->execute(array($postID, $userID));
+      return $stmt->fetch();
     }
     catch(PDOException $e) {
       return false;
