@@ -3,6 +3,10 @@
   include_once("../database/session.php");
   include_once('../database/users.php');
 
+  // Verify if user is logged in
+  if (!isset($_SESSION['id']))
+    die(header('Location: login.php'));
+
   draw_header();
   ?>
    <section id="edit_profile">

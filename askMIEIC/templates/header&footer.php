@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" />
         <link rel="shortcut icon" href="../css/favicon.ico" />
+        <script src="../js/script.js" defer></script>
     </head>
     
     <body>

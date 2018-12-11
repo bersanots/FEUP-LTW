@@ -47,6 +47,18 @@
     }
   }
 
+  function getCommentsAfterId($postID, $commentID) {
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT Comments.*, User.name FROM Comment JOIN User USING (user) WHERE post = ? AND Comment.id > ?');
+      $stmt->execute(array($postID, $commentID));
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return null;
+    }
+  }
+
   function createPost($title, $text, $date, $creator) {
     global $db;
     try {
@@ -62,12 +74,12 @@
     } 
   }
 
-  function addComment($text, $date, $postID, $userID) {
+  function addComment($postID, $userID, $text) {
     global $db;
     try {
   	  $stmt = $db->prepare('INSERT INTO Comment(text, date, post, user) VALUES (:Text,:Date,:Post,:User)');
   	  $stmt->bindParam(':Text', $text);
-      $stmt->bindParam(':Date', $date);
+      $stmt->bindParam(':Date', date("d-m-Y"));
       $stmt->bindParam(':Post', $postID);
       $stmt->bindParam(':User', $userID);
       return $stmt->execute();
