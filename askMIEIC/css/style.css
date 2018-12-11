@@ -4,15 +4,17 @@ body {
     background-color: #edeff0;
   
     margin: 0 auto;
-    width: 60em;
   
     display: grid;
-    grid-template-columns: [start] 4fr [middle] 1fr [end];
+    grid-template-columns: [start] 5fr [middle] 1fr [end];
     grid-template-rows: [start] auto [nav] auto [news] 1fr [footer] auto [end];
   }
   
   body > header {
     grid-column: start / end;
+    background: url(../images/FEUP_YARD.png) no-repeat left top;
+    background-size: cover;
+    height:7.5em;
   }
   
   #menu {
@@ -27,6 +29,8 @@ body {
   #main_section {
     grid-column: start;
     grid-row: news;
+
+    margin: auto 1em;
   }
   
   body > footer {
@@ -37,15 +41,20 @@ body {
   
   body > header {
     background-color: #046dd5;
+    font-style: italic; 
     color: white;
     padding: 1em;
     display: grid;
     grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: 1fr 2fr;
+
+    /*font exported from google*/
+    font-family: "Love Ya Like A Sister", 'Verdana', sans-serif;
   }
 
   body > header h1, body > header h2{
     margin: 0;
+    text-shadow: .2em .2em .2em black;
   }
   
   body > header h1 {
@@ -60,12 +69,12 @@ body {
   
   body > header #signup {
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
   }  
   
   body > header a {
     color: white;
-    text-decoration: none;  
+    text-decoration: none; 
   }
   
   body > header #signup a:nth-child(1),body > header #signup a:nth-child(2){
@@ -87,6 +96,7 @@ body {
   }
 
   aside#profile > div h3 {
+    font-style: italic;
     text-align: center;
     border: 4px outset #044b92;
 
@@ -130,6 +140,7 @@ body {
   #menu li a{
     color: black;
     text-decoration: none;
+    font-family: "Love Ya Like A Sister" , 'Verdana', sans-serif;
   }
   
   #menu li:hover {
@@ -218,9 +229,10 @@ body {
     color: white;
   
     padding: 1em;
-    margin-right: 1em;
+    margin: auto 1em;
   
     height: 1em;
+    display: flex;
   }
   
   body > footer p {
