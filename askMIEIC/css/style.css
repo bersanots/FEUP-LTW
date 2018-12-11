@@ -80,8 +80,8 @@ body {
     padding-left: 0;
   }
 
-  /* aside */
-  aside#profile  {
+   /* aside */
+   aside#profile  {
     border: 1px solid #046dd5;
     
   }
@@ -110,7 +110,7 @@ body {
     margin: 1em auto;
     transform: translateX(50%);
   }
-  
+
   /* navigation */
   
   #menu ul {

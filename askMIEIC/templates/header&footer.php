@@ -14,6 +14,7 @@
         <link href="../css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
         <link rel="shortcut icon" href="../css/favicon.ico" />
+        <script src="../js/script.js" defer></script>
     </head>
     
     <body>
