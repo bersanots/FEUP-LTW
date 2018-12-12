@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" />
         <link rel="shortcut icon" href="../css/favicon.ico" />
+        <script src="../js/script.js" defer></script>
     </head>
     
     <body>
@@ -38,7 +39,7 @@
 
 <?php function draw_menu(){ ?>
         <nav id="menu">
-            <!-- just for the hamburguer menu in responsive layout -->
+            <!-- just for the hamburger menu in responsive layout -->
             <input type="checkbox" id="hamburger"> 
             <label class="hamburger" for="hamburger"></label>
             <ul>
@@ -83,7 +84,7 @@
                 <img src="../images/FEUP_Library.png" alt="FEUP_Library">
                 <p>O askMIEIC é uma plataforma de dúvidas e de suporte para o estudo de todos os alunos do MIEIC.</p>
                 <p>Qualquer utilizador com acesso à página pode fazer posts de dúvidas ou dar feedback a outros posts.</p>
-                <p>Lembrem-se que a plataforma serve <strong>exclusivamente</strong> para dúvidas, sendo qualquer outro tipo de atividade <ins><strong>proíbida</strong></ins> e <ins><strong>banida!</strong></ins></p>
+                <p>Lembrem-se que a plataforma serve <strong>exclusivamente</strong> para dúvidas, sendo qualquer outro tipo de atividade <ins><strong>proibida</strong></ins> e <ins><strong>banida!</strong></ins></p>
                 <br><br>
                 <p><em><strong>Bom estudo e boa sorte!!</strong></em></p>
             </article>

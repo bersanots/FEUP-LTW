@@ -24,7 +24,7 @@
         <label>
           <input type="text" name="title" placeholder="Title">
         </label>
-        <textarea placeholder="Enter text here..."name="description"></textarea>
+        <textarea placeholder="Enter text here..." name="description"></textarea>
         <input type="submit" value="Create">
       </form>
     </section>

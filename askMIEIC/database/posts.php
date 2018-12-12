@@ -141,36 +141,24 @@
     } 
   }
 
-  function deleteValueFromComment($userID,$commentID) {
+  function deleteValueFromPost($userID, $postID){
     global $db;
     try {
-      $stmt = $db->prepare('DELETE FROM ValueComment WHERE idUser = ? and idComment = ?');
-      $stmt->execute(array($userID,$commentID));
+      $stmt = $db->prepare('DELETE FROM ValuePost WHERE idUser = ? AND idPost = ?');
+      $stmt->execute(array($userID, $postID));
       return true;
     }
     catch(PDOException $e) {
       return false;
-    }
+    } 
   }
 
-  function deleteValueFromPost($userID,$postID) {
+  function deleteValueFromComment($userID, $commentID){
     global $db;
     try {
-      $stmt = $db->prepare('DELETE FROM ValuePost WHERE idUser = ? and idPost = ?');
-      $stmt->execute(array($userID,$postID));
+      $stmt = $db->prepare('DELETE FROM ValueComment WHERE idUser = ? AND idComment = ?');
+      $stmt->execute(array($userID, $commentID));
       return true;
-    }
-    catch(PDOException $e) {
-      return false;
-    }
-  }
-
-  function getValueFromComment($userID, $commentID){
-    global $db;
-    try {
-  	  $stmt = $db->prepare('SELECT * FROM ValueComment WHERE idComment = ? and idUser = ?');
-      $stmt->execute(array($commentID, $userID));
-      return $stmt->fetch();
     }
     catch(PDOException $e) {
       return false;
@@ -180,20 +168,30 @@
   function getValueFromPost($userID, $postID){
     global $db;
     try {
-  	  $stmt = $db->prepare('SELECT * FROM ValuePost WHERE idPost = ? and idUser = ?');
-      $stmt->execute(array($postID, $userID));
+      $stmt = $db->prepare('SELECT * FROM ValuePost WHERE idUser = ? AND idPost = ?');
+      $stmt->execute(array($userID, $postID));
       return $stmt->fetch();
+    } catch (PDOException $e) {
+        return false;
     }
-    catch(PDOException $e) {
-      return false;
-    } 
   }
 
-  function editPost($id, $new_name){
+  function getValueFromComment($userID, $commentID){
     global $db;
     try {
-      $stmt = $db->prepare('UPDATE User SET name = ? WHERE id = ?');
-      return $stmt->execute(array($new_name, $id));
+      $stmt = $db->prepare('SELECT * FROM ValueComment WHERE idUser = ? AND idComment = ?');
+      $stmt->execute(array($userID, $commentID));
+      return $stmt->fetch();
+    } catch (PDOException $e) {
+        return false;
+    }
+  }
+
+  function editPost($id, $title){
+    global $db;
+    try {
+      $stmt = $db->prepare('UPDATE Post SET title = ? WHERE id = ?');
+      return $stmt->execute(array($title, $id));
     }
     catch(PDOException $e) {
       return false;
