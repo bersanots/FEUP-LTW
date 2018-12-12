@@ -8,6 +8,7 @@ body {
     display: grid;
     grid-template-columns: [start] 5fr [middle] 1fr [end];
     grid-template-rows: [start] auto [nav] auto [news] 1fr [footer] auto [end];
+
   }
   
   body > header {
@@ -34,7 +35,8 @@ body {
   }
   
   body > footer {
-    align-self: end;
+
+    grid-row: footer;
   }
   
   /* header layout */
@@ -76,6 +78,10 @@ body {
     color: white;
     text-decoration: none; 
   }
+
+  body > header a:hover {
+    opacity: 0.5;
+  }
   
   body > header #signup a:nth-child(1),body > header #signup a:nth-child(2){
     border-right: 1px solid white;
@@ -96,6 +102,8 @@ body {
   }
 
   aside#profile > div h3 {
+    display:flex;
+    align-items: center;
     font-style: italic;
     text-align: center;
     border: 4px outset #044b92;
@@ -104,21 +112,28 @@ body {
     border-bottom-right-radius: 5px;
     /*border-radius: 10px;*/
     margin: 0 auto;
-    padding: 1rem 0;
+    padding: 0.4em 0;
     
   }
 
   aside#profile > div h3 a{
     color: #046dd5;
     text-decoration: none;
+    font-size: 0.8em;
+    padding-right: 2em;
   }
 
   aside#profile div img {
     background-color: white;
-    width: 50%;
-    height: 50%;
-    margin: 1em auto;
-    transform: translateX(50%);
+    width: 20%;
+    height: 20%;
+    margin:0 5px 0 10px;
+    border-radius: 50%;
+  }
+
+  aside#profile > div h5 {
+    font-style: italic;
+    text-align: center;
   }
 
   /* navigation */
@@ -247,7 +262,7 @@ body {
   
   p {
     font-family: "Georgia", serif;
-    line-height: 1.4em;
+    line-height: 1.2em;
   }
   
   header h2 {
@@ -258,15 +273,15 @@ body {
     font-size: 0.8em;
   }
   
-  #news header {
-    font-size: 1.5em;
-  }
-  
-  #news footer {
+  footer {
     font-size: 0.8em;
   }
+
+  #view_profile ,#edit_profile, #register,#login {
+    font-family: "Love Ya Like A Sister", 'Verdana', sans-serif;
+  }
   
-  /* section colors */
+  /* menu colors */
   
   #menu li:nth-child(1) {
     border-top: 5px solid #e1493e;
@@ -287,11 +302,19 @@ body {
   #menu li:nth-child(5) {
     border-top: 5px solid #19b6e9;
   }
-  
-  #menu li:nth-child(6) {
-    border-top: 5px solid #e84c8b;
+
+  /*Register, Log in, edit and save profile buttons*/
+  #register form input[type="submit"]:hover , #login form input[type="submit"]:hover, #view_profile form input[type="submit"]:hover ,#edit_profile form input[type="submit"]:hover{
+    background-color: #2a2f33;
   }
 
+  /* Profile and edit profile header1*/
+  #view_profile h1,#edit_profile h1 {
+    display: flex;
+    justify-content: center;
+    margin: 1em auto 0;
+
+  }
   
   /* navigation layout */
   
@@ -305,6 +328,16 @@ body {
     flex: 1;
   }
 
+  /*invisible elements in the normal view*/
+  body > header #signup a img {
+    display:none;
+  }
+
+  #hamburger, .hamburger {
+    display: none;
+  }
+
+  /*TODO*/
   /* responsive */
 
 @media (max-width: 60em) {
@@ -314,16 +347,42 @@ body {
       grid-template-rows: [start] auto [nav] auto [news] auto [footer] auto [end];
     }
   
-    #news article {
+    #main_section {
       margin: 0 0 1em;
     }
   
-    #related {
+    aside {
       display: none;  
     }
   
     body > footer {
       margin: 0;  
+    }
+
+    /*objective image must adjust to page*/
+    #objective img {
+
+      max-width: 60em;
+      max-height: 30em;
+    }
+    /*little profile pickture before header 'Profile' */
+    body > header #signup{
+      display:flex;
+      align-items: flex-start;
+  
+    }
+    body > header #signup a img {
+      display: block;
+      max-width: 30px;
+      max-height: 15px;
+      margin-right:0.2em;
+  
+      border-radius: 50%;
+    }
+  
+    body > header #signup a:nth-child(2) {
+      display:flex;
+      align-items: center;
     }
   }
   
@@ -333,18 +392,50 @@ body {
     }
   
     body > header h1 {
-      font-size: 1.5em;  
+      font-size: 1.5em; 
     } 
+
+    header a {
+      font-size: 0.7em;
+    }
   
     body > header h2 {
       display: none;
+    }
+
+    .hamburger {
+      display: block;
+      color: white;
+      position: relative;
+      bottom: 3em;
+      right: 90%;
+      float: right;
+      
+    }
+  
+    .hamburger:before {
+      content:'\2630';
+    }
+
+    .hamburger:hover {
+      opacity: 0.5;
     }
   
     #menu ul {
       flex-direction: column;
       margin: 0;
       padding: 0;
-      color: white;
+
+    }
+
+    #hamburger:checked + .hamburger + ul li{
+      max-height: 1em;
+      padding: 1em;
+      opacity: 1;
+    }
+
+    #hamburger:checked + .hamburger:before{
+      content:'\25BD';
     }
   
     #menu li {
@@ -359,54 +450,67 @@ body {
     #menu li:nth-child(1) {
       border-top: none;
       border-left: 5px solid #e1493e;
+      border-bottom: 1px solid #e1493e;
+      border-right: 1px solid #e1493e;
     }
   
     #menu li:nth-child(2) {
       border-top: none;
       border-left: 5px solid #8aba56;
+      border-bottom: 1px solid #8aba56;
+      border-right: 1px solid #8aba56;
     }
   
     #menu li:nth-child(3) {
       border-top: none;
       border-left: 5px solid #5b4282;
+      border-bottom: 1px solid #5b4282;
+      border-right: 1px solid #5b4282;
     }
   
     #menu li:nth-child(4) {
       border-top: none;
       border-left: 5px solid #ff8932;
+      border-bottom: 1px solid #ff8932;
+      border-right: 1px solid #ff8932;
     }
   
     #menu li:nth-child(5) {
       border-top: none;
       border-left: 5px solid #19b6e9;
+      border-bottom: 1px solid #19b6e9;
+      border-right: 1px solid #19b6e9;
     }
   
-    #menu li:nth-child(6) {
-      border-top: none;
-      border-left: 5px solid #e84c8b;
+    /*objective image must adjust to page*/
+    #objective img {
+
+      max-width: 40em;
+      max-height: 15em;
+    }
+
+    /*little profile pickture before header 'Profile' */
+    body > header #signup{
+      display:flex;
+      align-items: flex-start;
+  
+    }
+    body > header #signup a img {
+      display: block;
+      max-width: 30px;
+      max-height: 15px;
+      margin-right:0.2em;
+  
+      border-radius: 50%;
     }
   
-    #news .tags {
-      display: none;  
-    }
-  
-    #news header {
-      color: black;
-      max-width: 100%;
-      font-size: 1em;
-      padding: 1em;
-      position: static;
-    }
-  
-    #news header h1 {
-      text-shadow: none;
-    }
-  
-    #news header a{
-      color: black;
+    body > header #signup a:nth-child(2) {
+      display:flex;
+      align-items: center;
     }
   }
 
+  /*TODO*/
   #comments {
     margin: 1em;
   }

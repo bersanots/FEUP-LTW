@@ -10,7 +10,7 @@
   draw_header();
   ?>
    <section id="view_profile">
-      <h1>Profile Information</h1>
+      <h1>Profile Information:</h1>
       <form action="edit_profile.php" method="post">
         <label>
           FEUP ID <p><?php echo getUserID()?></p>

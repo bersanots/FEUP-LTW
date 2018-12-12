@@ -28,7 +28,7 @@
                     <a href="../pages/register.php">Register</a>
                     <a href="../pages/login.php">Login</a> 
                 <?php } else { ?>
-                    <a href="../pages/profile.php">Profile</a>
+                    <a href="../pages/profile.php"><img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture"> Profile</a>
                     <a href="../actions/logout_action.php">Logout</a> 
                 <?php } ?>
             </div>
@@ -38,6 +38,9 @@
 
 <?php function draw_menu(){ ?>
         <nav id="menu">
+            <!-- just for the hamburguer menu in responsive layout -->
+            <input type="checkbox" id="hamburger"> 
+            <label class="hamburger" for="hamburger"></label>
             <ul>
                 <li><a href="../pages/first_year.php">st year</a></li>
                 <li><a href="../index.php">nd year</a></li>
@@ -50,17 +53,17 @@
           if(getUserID() !== null){?>
             <aside id="profile">
               <div>
-                <h3>Profile</h3>
-                <img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture">
-                <p><?php echo getUser(getUserID())['name']?></p>
+                <h3><img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture"><a href="../pages/profile.php"><?php echo getUser(getUserID())['name']?></a></h3>
+                <h5>Last Posts:</h5>
+                <p></p>
               </div>        
             </aside>
         <?php } 
         else {?>
             <aside id="profile">
               <div>
-                <h3><a href="../pages/login.php">Profile</a></h3>
-                <img id="profile_pic" src="../images/default.png" alt="Profile picture">
+                <h3><img id="profile_pic" src="../images/default.png" alt="Profile picture"><a href="../pages/login.php">Profile</a></h3>
+                <h5>Last Posts:</h5>
                 <p></p>
               </div>        
             </aside>
