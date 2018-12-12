@@ -48,7 +48,7 @@
 
           // Create an image representation of the original image
           imagepng(imagecreatefromstring(file_get_contents($originalFileName)), $originalFileName);
-          $original = imagecreatefromjpg($originalFileName);
+          $original = imagecreatefrompng($originalFileName);
 
           $width = imagesx($original);     // width of the original image
           $height = imagesy($original);    // height of the original image

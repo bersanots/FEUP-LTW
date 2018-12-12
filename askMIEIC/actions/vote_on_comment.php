@@ -23,15 +23,30 @@
 
   $vote_type = $_GET['type'];
 
-  // Like or dislike comment
-  if($vote_type=='like')
-    addLikeToComment($_SESSION['id'], $commentID);
-  else if($vote_type=='dislike')
-    addDislikeToComment($_SESSION['id'], $commentID);
-  else {
-    $_SESSION['error'] = 'Invalid vote action';
-    die(header("Location:".$_SERVER['HTTP_REFERER'].""));
-  }
 
-  header("Location:".$_SERVER['HTTP_REFERER']."");
+ // Like or dislike post
+ if($vote_type=='like'){
+  if(getValueFromComment($_SESSION['id'], $commentID)['value'] == 1){
+    deleteValueFromComment($_SESSION['id'], $commentID);
+  } else if(getValueFromComment($_SESSION['id'], $commentID)['value'] == -1){
+    deleteValueFromComment($_SESSION['id'], $commentID);
+    addValueToComment($_SESSION['id'], $commentID, 1);
+  } else {
+    addValueToComment($_SESSION['id'], $commentID, 1);
+  }
+}
+else if($vote_type=='dislike'){
+  if(getValueFromComment($_SESSION['id'], $commentID)['value'] == -1){
+    deleteValueFromComment($_SESSION['id'], $commentID);
+  } else if(getValueFromComment($_SESSION['id'], $commentID)['value'] == 1){
+    deleteValueFromComment($_SESSION['id'], $commentID);
+    addValueToComment($_SESSION['id'], $commentID, -1);
+  } else addValueToComment($_SESSION['id'], $commentID, -1);
+}
+else {
+  $_SESSION['error'] = 'Invalid vote action';
+  die(header("Location:".$_SERVER['HTTP_REFERER'].""));
+}
+
+header("Location:".$_SERVER['HTTP_REFERER']."");
 ?>

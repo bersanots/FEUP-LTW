@@ -24,10 +24,26 @@
   $vote_type = $_GET['type'];
 
   // Like or dislike post
-  if($vote_type=='like')
-    addLikeToPost($_SESSION['id'], $postID);
-  else if($vote_type=='dislike')
-    addDislikeToPost($_SESSION['id'], $postID);
+  if($vote_type=='like'){
+    if(getValueFromPost($_SESSION['id'], $postID)['value'] == 1){
+      echo('olaaaaaaaaaaaa1');
+      deleteValueFromPost($_SESSION['id'], $postID);
+    } else if(getValueFromPost($_SESSION['id'], $postID)['value'] == -1){
+      echo('olaaaaaaaaaaaa2');
+      deleteValueFromPost($_SESSION['id'], $postID);
+      addValueToPost($_SESSION['id'], $postID, 1);
+    } else {
+      addValueToPost($_SESSION['id'], $postID, 1);
+    }
+  }
+  else if($vote_type=='dislike'){
+    if(getValueFromPost($_SESSION['id'], $postID)['value'] == -1){
+      deleteValueFromPost($_SESSION['id'], $postID);
+    } else if(getValueFromPost($_SESSION['id'], $postID)['value'] == 1){
+      deleteValueFromPost($_SESSION['id'], $postID);
+      addValueToPost($_SESSION['id'], $postID, -1);
+    } else addValueToPost($_SESSION['id'], $postID, -1);
+  }
   else {
     $_SESSION['error'] = 'Invalid vote action';
     die(header("Location:".$_SERVER['HTTP_REFERER'].""));

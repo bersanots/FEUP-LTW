@@ -24,7 +24,7 @@
         <label>
           <input type="text" name="title" placeholder="Title">
         </label>
-        <textarea name="description">Enter text here...</textarea>
+        <textarea placeholder="Enter text here..."name="description"></textarea>
         <input type="submit" value="Create">
       </form>
     </section>
@@ -42,7 +42,7 @@
     <a href="../actions/vote_on_post.php?post=<?=$post['id']?>&type=like&csrf=<?=$_SESSION['csrf']?>"><i class="fas fa-arrow-circle-up"></i></a>
     <a href="../actions/vote_on_post.php?post=<?=$post['id']?>&type=dislike&csrf=<?=$_SESSION['csrf']?>"><i class="fas fa-arrow-circle-down"></i></a>
     <?$points=$post['points']; echo $points>0?'+'.$points:$points?>
-    <header><h2><?=$post['title']?></h2></header>
+    <header><h2><?=htmlspecialchars($post['title'])?></h2></header>
     <p><?=htmlspecialchars($post['text'])?></p>
  
     <section id="comments">
@@ -55,7 +55,7 @@
      <form>
        <input type="hidden" name="post" value="<?=$post['id']?>">
        <input type="hidden" name="user" value="<?=$_SESSION['id']?>">
-       <textarea name="text">Add a comment...</textarea>
+       <textarea placeholder="Add a comment..." name="text"></textarea>
        <input type="submit" value="Reply">
      </form>
     </section>
