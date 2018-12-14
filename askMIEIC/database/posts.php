@@ -50,7 +50,7 @@
   function getCommentsAfterId($postID, $commentID) {
     global $db;
     try {
-      $stmt = $db->prepare('SELECT Comments.*, User.name FROM Comment JOIN User USING (user) WHERE post = ? AND Comment.id > ?');
+      $stmt = $db->prepare('SELECT Comment.*, User.name FROM Comment, User WHERE Comment.user = User.id And post = ? AND Comment.id > ?');
       $stmt->execute(array($postID, $commentID));
       return $stmt->fetchAll();
     }
