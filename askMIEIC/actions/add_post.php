@@ -6,8 +6,8 @@
   if (!isset($_SESSION['id']))
     die(header('Location: ../pages/login.php'));
 
-  $date = date("d-m-Y");
-  createPost($_POST['title'], $_POST['description'], $date, $_SESSION['id']);
+  $subjectID = getSubjectID($_POST['subject'])['id'];
+  createPost($subjectID, $_POST['title'], $_POST['description'], $_SESSION['id']);
 
   header("Location:".$_SERVER['HTTP_REFERER']."");
 ?>

@@ -14,7 +14,7 @@
   $comment_id = $_POST['comment_id'];
 
   // Adds the comment to the database
-  addComment($post, $user, $text);
+  addComment($text, $post, $user);
 
   // Gets comments from the database
   $comments = getCommentsAfterId($post, $comment_id);

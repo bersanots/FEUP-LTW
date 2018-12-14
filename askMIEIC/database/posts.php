@@ -23,10 +23,82 @@
     }
   }
 
+  function getYearPosts($year) {
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT * FROM Post JOIN Subject ON Post.subject = Subject.id WHERE year = ?');
+      $stmt->execute(array($year));
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return null;
+    }
+  }
+
+  function getPostsByMostRecent() {
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT * FROM Post ORDER BY datetime DESC');
+      $stmt->execute();
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return null;
+    }
+  }
+
+  function getYearPostsByMostRecent($year) {
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT Post.*, Subject.year FROM Post JOIN Subject ON Post.subject = Subject.id WHERE year = ? ORDER BY datetime DESC');
+      $stmt->execute(array($year));
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return null;
+    }
+  }
+
+  function getPostsByMostVoted() {
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT * FROM Post ORDER BY points DESC');
+      $stmt->execute();
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return null;
+    }
+  }
+
   function getCommentsFromPost($postID) {
     global $db;
     try {
-      $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ?');
+      $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ? ORDER BY datetime');
+      $stmt->execute(array($postID));
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return null;
+    }
+  }
+
+  function getCommentsFromPostByOldest($postID) {
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ? ORDER BY datetime');
+      $stmt->execute(array($postID));
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return null;
+    }
+  }
+
+  function getCommentsFromPostByMostVoted($postID) {
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ? ORDER BY points DESC');
       $stmt->execute(array($postID));
       return $stmt->fetchAll();
     }
@@ -50,7 +122,7 @@
   function getCommentsAfterId($postID, $commentID) {
     global $db;
     try {
-      $stmt = $db->prepare('SELECT Comment.*, User.name FROM Comment, User WHERE Comment.user = User.id And post = ? AND Comment.id > ?');
+      $stmt = $db->prepare('SELECT Comments.*, User.name FROM Comment JOIN User ON Comment.user = User.id WHERE post = ? AND Comment.id > ?');
       $stmt->execute(array($postID, $commentID));
       return $stmt->fetchAll();
     }
@@ -59,13 +131,14 @@
     }
   }
 
-  function createPost($title, $text, $date, $creator) {
+  function createPost($subjectID, $title, $text, $creator) {
     global $db;
     try {
-  	  $stmt = $db->prepare('INSERT INTO Post(title, text, date, creator) VALUES (:Title,:Text,:Date,:Creator)');
-  	  $stmt->bindParam(':Title', $title);
+  	  $stmt = $db->prepare('INSERT INTO Post(subject, title, text, datetime, creator) VALUES (:SubjectID, :Title,:Text,:Datetime,:Creator)');
+      $stmt->bindParam(':SubjectID', $subjectID);
+      $stmt->bindParam(':Title', $title);
   	  $stmt->bindParam(':Text', $text);
-      $stmt->bindParam(':Date', $date);
+      $stmt->bindParam(':Datetime', date("Y-m-d H:i:s"));
       $stmt->bindParam(':Creator', $creator);
       return $stmt->execute();
     }
@@ -74,12 +147,12 @@
     } 
   }
 
-  function addComment($postID, $userID, $text) {
+  function addComment($text, $postID, $userID) {
     global $db;
     try {
-  	  $stmt = $db->prepare('INSERT INTO Comment(text, date, post, user) VALUES (:Text,:Date,:Post,:User)');
+  	  $stmt = $db->prepare('INSERT INTO Comment(text, datetime, post, user) VALUES (:Text,:Datetime,:Post,:User)');
   	  $stmt->bindParam(':Text', $text);
-      $stmt->bindParam(':Date', date("d-m-Y"));
+      $stmt->bindParam(':Datetime', date("Y-m-d H:i:s"));
       $stmt->bindParam(':Post', $postID);
       $stmt->bindParam(':User', $userID);
       return $stmt->execute();
@@ -171,8 +244,9 @@
       $stmt = $db->prepare('SELECT * FROM ValuePost WHERE idUser = ? AND idPost = ?');
       $stmt->execute(array($userID, $postID));
       return $stmt->fetch();
-    } catch (PDOException $e) {
-        return false;
+    } 
+    catch (PDOException $e) {
+      return false;
     }
   }
 
@@ -182,8 +256,45 @@
       $stmt = $db->prepare('SELECT * FROM ValueComment WHERE idUser = ? AND idComment = ?');
       $stmt->execute(array($userID, $commentID));
       return $stmt->fetch();
-    } catch (PDOException $e) {
-        return false;
+    } 
+    catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  function getUserPostsCount($userID){
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT COUNT(creator) AS count FROM Post WHERE creator = ?');
+      $stmt->execute(array($userID));
+      return $stmt->fetch();
+    } 
+    catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  function getUserCommentsCount($userID){
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT COUNT(user) AS count FROM Comment WHERE user = ?');
+      $stmt->execute(array($userID));
+      return $stmt->fetch();
+    } 
+    catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  function getUserPoints($userID){
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT SUM(Post.points + Comment.points) AS sum FROM Post JOIN Comment ON Comment.user = Post.creator WHERE user = ?');
+      $stmt->execute(array($userID));
+      return $stmt->fetch();
+    } 
+    catch (PDOException $e) {
+      return false;
     }
   }
 
@@ -192,6 +303,42 @@
     try {
       $stmt = $db->prepare('UPDATE Post SET title = ? WHERE id = ?');
       return $stmt->execute(array($title, $id));
+    }
+    catch(PDOException $e) {
+      return false;
+    }
+  }
+
+  function getYearSubjects($year){
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT name FROM Subject WHERE year = ?');
+      $stmt->execute(array($year));
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return false;
+    }
+  }
+
+  function getSubjectID($name){
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT id FROM Subject WHERE name = ?');
+      $stmt->execute(array($name));
+      return $stmt->fetch();
+    }
+    catch(PDOException $e) {
+      return false;
+    }
+  }
+
+  function getSubjectName($subjectID){
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT name FROM Subject WHERE id = ?');
+      $stmt->execute(array($subjectID));
+      return $stmt->fetch();
     }
     catch(PDOException $e) {
       return false;

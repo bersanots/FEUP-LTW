@@ -1,9 +1,9 @@
-<?php function draw_header(){
-    
+<?php
     include_once('../database/session.php');
     include_once('../database/users.php');
+?>
 
-    ?>
+<?php function draw_header(){ ?>
     <!DOCTYPE html>
     <html lang="en-US">
     
@@ -43,11 +43,11 @@
             <input type="checkbox" id="hamburger"> 
             <label class="hamburger" for="hamburger"></label>
             <ul>
-                <li><a href="../pages/first_year.php">st year</a></li>
-                <li><a href="../index.php">nd year</a></li>
-                <li><a href="../index.php">rd year</a></li>
-                <li><a href="../index.php">th year</a></li>
-                <li><a href="../index.php">th year</a></li>
+                <li><a href="../pages/year_page.php?year=1&csrf=<?=$_SESSION['csrf']?>">st year</a></li>
+                <li><a href="../pages/year_page.php?year=2&csrf=<?=$_SESSION['csrf']?>">nd year</a></li>
+                <li><a href="../pages/year_page.php?year=3&csrf=<?=$_SESSION['csrf']?>">rd year</a></li>
+                <li><a href="../pages/year_page.php?year=4&csrf=<?=$_SESSION['csrf']?>">th year</a></li>
+                <li><a href="../pages/year_page.php?year=5&csrf=<?=$_SESSION['csrf']?>">th year</a></li>
             </ul>
         </nav>
         <?php
