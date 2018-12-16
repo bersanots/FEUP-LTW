@@ -12,7 +12,7 @@
       changeEmail($user_id, $_POST['email']);
     if(file_exists($_FILES['image']['tmp_name']) && is_uploaded_file($_FILES['image']['tmp_name']))
       upload_image($user_id);
-    header("Location: ../pages/profile.php");
+    header("Location: ../pages/profile.php?user=" . $user_id . "&csrf=" . $_SESSION['csrf']);
   }
   else if($current_password == hash('sha256', $_POST['old_password'])){
     if($_POST['new_password'] == $_POST['confirm_new_password']){
@@ -24,7 +24,7 @@
         changePassword($user_id, $_POST['new_password']);
       if(file_exists($_FILES['image']['tmp_name']) && is_uploaded_file($_FILES['image']['tmp_name']))
         upload_image($user_id);
-      header("Location: ../pages/profile.php");
+      header("Location: ../pages/profile.php?user=" . $user_id . "&csrf=" . $_SESSION['csrf']);
     } else {
         $_SESSION['error'] = 'New password did not match the confirmation';
         die(header("Location:".$_SERVER['HTTP_REFERER'].""));

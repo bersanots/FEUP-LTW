@@ -6,8 +6,9 @@
 <?php function draw_posts_titles($posts, $year_subjects) {
     /**
      * Draws a section (#posts) containing several posts
-     * as articles. Uses the draw_post function to draw
-     * each post.
+     * as articles. Uses the draw_post_title function to draw
+     * each post. Uses @year_subjects as options
+     * for the radio buttons on the #add_post section
      */ ?>
   <section id="posts">
   <?php
@@ -132,5 +133,42 @@
     <a href="../actions/vote_on_comment.php?comment=<?=$comment['id']?>&type=dislike&csrf=<?=$_SESSION['csrf']?>"><i class="fas fa-arrow-circle-down"></i></a>
     <?$points=$comment['points']; echo $points>0?'+'.$points:$points?>
     <p><?=htmlspecialchars($comment['text'])?></p>
+  </article>
+<?php } ?>
+
+<?php function draw_minified_posts($posts) {
+    /**
+     * Draws a section (#posts) containing several short versions of posts
+     * as articles. Uses the draw_post function to draw
+     * each post.
+     */ ?>
+  <section id="posts">
+  <?php
+    if (isset($_SESSION['error'])) {
+        echo htmlentities($_SESSION['error']);
+    }
+    unset($_SESSION['error']);
+
+    if (!empty($posts)) {
+      for ($index = 0; $index < 5 && $index < sizeof($posts); $index++) {
+        draw_minified_post($posts[$index]);
+      }
+    } else {
+        echo "There are no posts available!";
+    } ?>
+  </section>
+<?php
+  }
+?>
+
+<?php function draw_minified_post($post) {
+/**
+ * Draw a single short post as an article (.post).
+ */ ?>
+  <article class="post">
+    <span class="subject"><?=getSubjectName($post['subject'])['name']?></span>
+    <span class="user"><a href="../pages/profile.php?user=<?=getUser($post['creator'])['id']?>&csrf=<?=$_SESSION['csrf']?>"><?=getUser($post['creator'])['name']?></a></span>
+    <header><h2><?=htmlspecialchars($post['title'])?></h2></header>
+    <span class="comment_num"><a href="../pages/single_post.php?post=<?=$post['id']?>&csrf=<?=$_SESSION['csrf']?>"><i class="far fa-comment-alt"></i>&nbsp<?=sizeof(getCommentsFromPost($post['id']))?></a></span>
   </article>
 <?php } ?>

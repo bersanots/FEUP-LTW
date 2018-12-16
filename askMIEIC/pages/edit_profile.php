@@ -1,7 +1,5 @@
 <?php
   include_once('../templates/header&footer.php');
-  include_once("../database/session.php");
-  include_once('../database/users.php');
 
   // Verify if user is logged in
   if (!isset($_SESSION['id']))

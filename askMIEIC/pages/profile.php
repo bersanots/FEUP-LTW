@@ -1,8 +1,5 @@
 <?php
   include_once('../templates/header&footer.php');
-  include_once("../database/session.php");
-  include_once('../database/users.php');
-  include_once('../database/posts.php');
 
   // Verify if user is logged in
   if (!isset($_SESSION['id']))
@@ -41,11 +38,11 @@
       <img id="profile_pic" src=<?=getImage($userID)?> alt="Profile picture">
       <h2>User Statistics:</h2>
       <label>
-        <a href="../pages/user_posts.php?user=<?=$userID?>&csrf=<?=$_SESSION['csrf']?>">Posts:</a>
+        <a href="../pages/user_entries.php?user=<?=$userID?>&entry=posts&csrf=<?=$_SESSION['csrf']?>">Posts:</a>
         <?php echo sizeof(getUserPosts($userID))?>
       </label>
       <label>
-        <a href="../pages/user_comments.php?user=<?=$userID?>&csrf=<?=$_SESSION['csrf']?>">Comments:</a>
+        <a href="../pages/user_entries.php?user=<?=$userID?>&entry=comments&csrf=<?=$_SESSION['csrf']?>">Comments:</a>
         <?php echo sizeof(getUserComments($userID))?>
       </label>
       <label>

@@ -1,6 +1,8 @@
 <?php
     include_once('../database/session.php');
     include_once('../database/users.php');
+    include_once('../database/posts.php');
+    include_once('../templates/posts_list.php');
 ?>
 
 <?php function draw_header(){ ?>
@@ -50,25 +52,26 @@
                 <li><a href="../pages/year_page.php?year=5&csrf=<?=$_SESSION['csrf']?>">th year</a></li>
             </ul>
         </nav>
-        <?php
-          if(getUserID() !== null){?>
-            <aside id="profile">
-              <div>
-                <h3><img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture"><a href="../pages/profile.php"><?php echo getUser(getUserID())['name']?></a></h3>
-                <h5>Last Posts:</h5>
-                <p></p>
-              </div>        
-            </aside>
-        <?php } 
-        else {?>
-            <aside id="profile">
-              <div>
-                <h3><img id="profile_pic" src="../images/default.png" alt="Profile picture"><a href="../pages/login.php">Profile</a></h3>
-                <h5>Last Posts:</h5>
-                <p></p>
-              </div>        
-            </aside>
-        <?php  }?>
+        <aside id="profile">
+          <div>
+            <h3>
+              <?php 
+                if(getUserID() !== null) { ?>
+                  <img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture">
+                  <a href="../pages/profile.php?user=<?=getUserID()?>&csrf=<?=$_SESSION['csrf']?>"><?php echo getUser(getUserID())['name']?></a>
+              <?php } 
+                else {?>
+                  <img id="profile_pic" src="../images/default.png" alt="Profile picture"><a href="../pages/login.php">Profile</a>   
+              <?php  }?>
+            </h3>
+            <h5>Last Posts:</h5>
+            <p></p>
+            <?php 
+              $posts = getPostsByMostRecent();
+              draw_minified_posts($posts);
+            ?>
+          </div>        
+        </aside>
         <section id="main_section">
           <section id="init_description">
             <article>
