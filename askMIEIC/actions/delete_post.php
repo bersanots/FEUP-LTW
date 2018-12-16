@@ -21,8 +21,11 @@
     die(header("Location:".$_SERVER['HTTP_REFERER'].""));
   }
 
-  deletePost($postID);
-  echo 'Post deleted!';
+  // Delete the post and its comments
+  if(!deletePost($postID)) {
+    $_SESSION['error'] = 'Error: Unable to delete the post';
+    die(header("Location:".$_SERVER['HTTP_REFERER'].""));
+  }
   
   header("Location:".$_SERVER['HTTP_REFERER']."");
 ?>

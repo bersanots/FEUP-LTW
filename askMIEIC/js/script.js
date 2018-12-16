@@ -8,7 +8,6 @@ function encodeForAjax(data) {
 }
 
 function submitComment(event) {
- 
   let post = document.querySelector('#comments input[name=post]').value;
   let user = document.querySelector('#comments input[name=user]').value;
   let text = document.querySelector('#comments textarea[name=text]').value;
@@ -23,22 +22,18 @@ function submitComment(event) {
   event.preventDefault();
 }
 
-
 function receiveComments(event) {
   let section = document.querySelector('#comments');
-  let comments = JSON.parse(this.responseText)
-console.log(comments)
+  let comments = JSON.parse(this.responseText);
+
   comments.forEach(element => {
-    console.log(element)
     let comment = document.createElement('article');
     comment.classList.add('comment');
     comment.innerHTML = '<span class="user">' +
     element.name + '</span><span class="date">' +
     element.date + '</span><p>' +
     element.text + '</p>';
-
     section.insertBefore(comment, commentForm);
-
     document.getElementsByName('text').forEach(element => {
       element.value = '';
     });

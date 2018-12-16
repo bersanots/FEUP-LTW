@@ -8,10 +8,17 @@
   if (!isset($_SESSION['id']))
     die(header('Location: login.php'));
 
-  draw_header();
-  $userID = getUserID();
+  // Verifies CSRF token
+  if ($_SESSION['csrf'] != $_GET['csrf']) {
+    $_SESSION['error'] = 'Invalid request!';
+    die(header("Location:".$_SERVER['HTTP_REFERER'].""));
+  }
 
+  $userID = $_GET['user'];
+
+  draw_header();
   ?>
+
    <section id="view_profile">
       <h1>Profile Information:</h1>
       <form action="edit_profile.php" method="post">
@@ -24,7 +31,9 @@
         <label>
           E-mail <p><?php echo getUser($userID)['email']?></p>
         </label>
-        <input type="submit" value="Edit">
+        <?php if($userID===getUserID()) { ?>
+          <input type="submit" value="Edit">
+        <?php }?>
       </form>
       <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
     </section>
@@ -32,10 +41,12 @@
       <img id="profile_pic" src=<?=getImage($userID)?> alt="Profile picture">
       <h2>User Statistics:</h2>
       <label>
-        Posts: <?php echo getUserPostsCount($userID)['count']?>
+        <a href="../pages/user_posts.php?user=<?=$userID?>&csrf=<?=$_SESSION['csrf']?>">Posts:</a>
+        <?php echo sizeof(getUserPosts($userID))?>
       </label>
       <label>
-        Comments: <?php echo getUserCommentsCount($userID)['count']?>
+        <a href="../pages/user_comments.php?user=<?=$userID?>&csrf=<?=$_SESSION['csrf']?>">Comments:</a>
+        <?php echo sizeof(getUserComments($userID))?>
       </label>
       <label>
         Points: <?php echo getUserPoints($userID)['sum']?>

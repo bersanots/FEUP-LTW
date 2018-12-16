@@ -59,7 +59,7 @@
     }
   }
 
-  function getPostsByMostVoted() {
+  function getPostsByMostLiked() {
     global $db;
     try {
       $stmt = $db->prepare('SELECT * FROM Post ORDER BY points DESC');
@@ -95,7 +95,7 @@
     }
   }
 
-  function getCommentsFromPostByMostVoted($postID) {
+  function getCommentsFromPostByMostLiked($postID) {
     global $db;
     try {
       $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ? ORDER BY points DESC');
@@ -166,6 +166,8 @@
     global $db;
     try {
       $stmt = $db->prepare('DELETE FROM Post WHERE id = ?');
+      $stmt->execute(array($postID));
+      $stmt = $db->prepare('DELETE FROM Comment WHERE post = ?');
       $stmt->execute(array($postID));
       return true;
     }
@@ -262,24 +264,48 @@
     }
   }
 
-  function getUserPostsCount($userID){
+  function getUserPosts($userID){
     global $db;
     try {
-      $stmt = $db->prepare('SELECT COUNT(creator) AS count FROM Post WHERE creator = ?');
+      $stmt = $db->prepare('SELECT * FROM Post WHERE creator = ?');
       $stmt->execute(array($userID));
-      return $stmt->fetch();
+      return $stmt->fetchAll();
     } 
     catch (PDOException $e) {
       return false;
     }
   }
 
-  function getUserCommentsCount($userID){
+  function getUserPostsByMostRecent($userID){
     global $db;
     try {
-      $stmt = $db->prepare('SELECT COUNT(user) AS count FROM Comment WHERE user = ?');
+      $stmt = $db->prepare('SELECT * FROM Post WHERE creator = ? ORDER BY datetime DESC');
       $stmt->execute(array($userID));
-      return $stmt->fetch();
+      return $stmt->fetchAll();
+    } 
+    catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  function getPostsWithUserCommentsByMostRecent($userID){
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT * FROM Post WHERE id IN (SELECT post FROM Comment WHERE user = ? ORDER BY datetime DESC)');
+      $stmt->execute(array($userID));
+      return $stmt->fetchAll();
+    } 
+    catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  function getUserComments($userID){
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT * FROM Comment WHERE user = ?');
+      $stmt->execute(array($userID));
+      return $stmt->fetchAll();
     } 
     catch (PDOException $e) {
       return false;

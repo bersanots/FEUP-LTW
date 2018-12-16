@@ -526,7 +526,39 @@ body {
   }
 
   #posts {
+    position: relative;
     margin: 1em;
+    display: inline-block;
+  }
+  
+  #add_post {
+    position: absolute;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    margin-left: 30%;
+    width: 30%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .new_post_btn {
+    height: 100px;
+    width: 200px;
+    border-radius: 20px;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    background-color: #154150;
+    color: #FFFFFF;
+    font-size: 20px;
+  }
+
+  #add_post h1 {
+    text-align: center;
+  }
+
+  .post {
+    margin-bottom: 3em;
   }
 
   .post > .subject {
@@ -554,6 +586,16 @@ body {
   .post > .user:after {
     font-style: normal;
     content: ':';
+  }
+
+  .post > .comment_num > a:after {
+    font-style: normal;
+    content: ' comments';
+  }
+
+  .post > .comment_num > a {
+    color: #000000;
+    text-decoration: none;
   }
 
   #comments {
@@ -604,10 +646,21 @@ body {
     font-size: 1em;
   }
 
-  .radioButtons label{   
+  .radioButtons {   
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+
+  .radioButtons p{   
+    text-align: center;
+    margin: 1px;
+ }
+
+  .radioButtons > label{   
     text-align: center;
     padding: 1px;
     margin: 1px;
+    font-weight: bold;
  }
 
   form {

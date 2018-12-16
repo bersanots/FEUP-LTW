@@ -14,13 +14,12 @@
     die(header("Location:".$_SERVER['HTTP_REFERER'].""));
   }
 
-  $year = $_GET['year'];
+  $postID = $_GET['post'];
 
-  // Get posts from a year, ordered by most recent
-  $posts = getYearPostsByMostRecent($year);
-  $year_subjects = getYearSubjects($year);
+  // Get single post
+  $post = getPost($postID);
 
   draw_header();
-  draw_posts_titles($posts, $year_subjects);
+  draw_full_post($post);
   draw_footer();
 ?>

@@ -21,8 +21,9 @@
     die(header("Location:".$_SERVER['HTTP_REFERER'].""));
   }
 
-  deleteComment($commentID);
-  echo 'Comment deleted!';
-  
+  if(!deleteComment($commentID)) {
+    $_SESSION['error'] = 'Error: Unable to delete the comment';
+    die(header("Location:".$_SERVER['HTTP_REFERER'].""));
+  }  
   header("Location:".$_SERVER['HTTP_REFERER']."");
 ?>

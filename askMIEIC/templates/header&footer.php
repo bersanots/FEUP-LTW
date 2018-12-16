@@ -29,8 +29,8 @@
                     <a href="../pages/register.php">Register</a>
                     <a href="../pages/login.php">Login</a> 
                 <?php } else { ?>
-                    <a href="../pages/profile.php"><img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture"> Profile</a>
-                    <a href="../actions/logout_action.php">Logout</a> 
+                    <a href="../pages/profile.php?user=<?=getUserID()?>&csrf=<?=$_SESSION['csrf']?>"><img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture"> Profile</a>
+                    <a href="../actions/logout_action.php">Logout</a>
                 <?php } ?>
             </div>
         </header>
