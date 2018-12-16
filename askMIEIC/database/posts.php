@@ -11,6 +11,18 @@
     }
   }
 
+  function getPostsDesc() {
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT * FROM Post order by ID desc');
+      $stmt->execute();
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return null;
+    }
+  }
+
   function getPost($postID) {
     global $db;
     try {

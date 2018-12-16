@@ -33,7 +33,7 @@
     <button class="new_post_btn" onclick="toggleAddPost()">Add New Post</button>
 
     <section id="add_post" style="display:none">
-      <form action="../actions/add_post.php" method="post">
+      <form action="../actions/add_post.php" method="post" enctype="multipart/form-data">
         <h1>Create a new post</h1>
         <label>
           <input type="text" name="title" placeholder="Title" required="required">
@@ -60,6 +60,9 @@
             </table>
         </div>
         <textarea placeholder="Enter text here..." name="description" required="required" rows="4" cols="42"></textarea>
+        <label>
+          Picture <input type="file" name="image">
+        </label>
         <input type="submit" value="Create">
       </form>
     </section>
@@ -96,6 +99,8 @@
       <span class="subject"><?=getSubjectName($post['subject'])['name']?></span>
       <span class="user"><a href="../pages/profile.php?user=<?=getUser($post['creator'])['id']?>&csrf=<?=$_SESSION['csrf']?>"><?=getUser($post['creator'])['name']?></a></span>
       <span class="date"><?=$post['datetime']?></span>
+      <?php if(getImagePost($post['id']) != 1)?>
+      <img id="profile_pic" src=<?=getImagePost($post['id'])?> alt="Profile picture">
       <a href="../actions/vote_on_post.php?post=<?=$post['id']?>&type=like&csrf=<?=$_SESSION['csrf']?>"><i class="fas fa-arrow-circle-up"></i></a>
       <a href="../actions/vote_on_post.php?post=<?=$post['id']?>&type=dislike&csrf=<?=$_SESSION['csrf']?>"><i class="fas fa-arrow-circle-down"></i></a>
       <?$points=$post['points']; echo $points>0?'+'.$points:$points?>

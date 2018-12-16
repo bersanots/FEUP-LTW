@@ -127,4 +127,11 @@
       return $path;
     } else return "../images/default.png";
   }
+
+  function getImagePost($post_id){
+    $path = "../images/posts/thumbs_small/$post_id.png";
+    if(file_exists($path)){
+      return $path;
+    } else return 1;
+  }
 ?>
