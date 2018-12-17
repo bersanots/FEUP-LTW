@@ -327,8 +327,8 @@
   function getUserPoints($userID){
     global $db;
     try {
-      $stmt = $db->prepare('SELECT SUM(Post.points + Comment.points) AS sum FROM Post JOIN Comment ON Comment.user = Post.creator WHERE user = ?');
-      $stmt->execute(array($userID));
+      $stmt = $db->prepare('SELECT sum1 + sum2 AS sum FROM (SELECT IFNULL(SUM(Post.points),0) AS sum1 FROM Post WHERE creator = ?) JOIN (SELECT IFNULL(SUM(Comment.points),0) AS sum2 FROM Comment WHERE user = ?)');
+      $stmt->execute(array($userID, $userID));
       return $stmt->fetch();
     } 
     catch (PDOException $e) {
@@ -381,5 +381,22 @@
     catch(PDOException $e) {
       return false;
     }
+  }
+
+  function getPostImage($post_id){
+    $path = "../images/posts/thumbs_small/$post_id.png";
+    if(file_exists($path)){
+      return $path;
+    } else return -1;
+  }
+
+  function deletePostImages($post_id){
+    $path_original = "../images/posts/originals/$post_id.png";
+    $path_medium = "../images/posts/thumbs_medium/$post_id.png";
+    $path_small = "../images/posts/thumbs_small/$post_id.png";
+    if(file_exists($path_original)) unlink($path_original);
+    if(file_exists($path_medium)) unlink($path_medium);
+    if(file_exists($path_small)) unlink($path_small);
+    return true;
   }
 ?>

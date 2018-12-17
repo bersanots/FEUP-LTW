@@ -21,8 +21,10 @@
     die(header("Location:".$_SERVER['HTTP_REFERER'].""));
   }
 
-  // Delete the post and its comments
-  if(!deletePost($postID)) {
+  // Delete the post, its comments and its images
+  if(deletePost($postID)) {
+    deletePostImages($postID);
+  }else {
     $_SESSION['error'] = 'Error: Unable to delete the post';
     die(header("Location:".$_SERVER['HTTP_REFERER'].""));
   }

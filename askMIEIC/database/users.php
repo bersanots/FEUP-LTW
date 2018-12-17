@@ -128,10 +128,13 @@
     } else return "../images/users/default.png";
   }
 
-  function getPostImage($post_id){
-    $path = "../images/posts/thumbs_small/$post_id.png";
-    if(file_exists($path)){
-      return $path;
-    } else return -1;
+  function deleteUserImages($user_id){
+    $path_original = "../images/users/originals/$user_id.png";
+    $path_medium = "../images/users/thumbs_medium/$user_id.png";
+    $path_small = "../images/users/thumbs_small/$user_id.png";
+    if(file_exists($path_original)) unlink($path_original);
+    if(file_exists($path_medium)) unlink($path_medium);
+    if(file_exists($path_small)) unlink($path_small);
+    return true;
   }
 ?>

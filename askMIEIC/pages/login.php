@@ -9,20 +9,20 @@
   ?>
 
   <section id="login">
-      <h1>Login</h1>
-      <form action="../actions/login_action.php" method="post">
-        <label>
-          FEUP ID <input type="number" name="id" min="201000000" max="201999999" required>
-        </label>
-        <label>
-          Password <input type="password" name="password" required>
-        </label>
-        <input type="submit" value="Login">
-      </form>
-      <p>
-        <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
-      </p>
-    </section>
+    <h1>Login</h1>
+    <form action="../actions/login_action.php" method="post">
+      <label>
+        FEUP ID <input type="number" name="id" min="201000000" max="201999999" required>
+      </label>
+      <label>
+        Password <input type="password" name="password" required>
+      </label>
+      <input type="submit" value="Login">
+    </form>
+    <p>
+      <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
+    </p>
+  </section>
   
   <?php 
   draw_footer();
