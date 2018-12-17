@@ -382,4 +382,21 @@
       return false;
     }
   }
+
+  function getPostImage($post_id){
+    $path = "../images/posts/thumbs_small/$post_id.png";
+    if(file_exists($path)){
+      return $path;
+    } else return -1;
+  }
+
+  function deletePostImages($post_id){
+    $path_original = "../images/posts/originals/$post_id.png";
+    $path_medium = "../images/posts/thumbs_medium/$post_id.png";
+    $path_small = "../images/posts/thumbs_small/$post_id.png";
+    if(file_exists($path_original)) unlink($path_original);
+    if(file_exists($path_medium)) unlink($path_medium);
+    if(file_exists($path_small)) unlink($path_small);
+    return true;
+  }
 ?>

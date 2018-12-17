@@ -8,6 +8,7 @@
   if($current_password == hash('sha256', $_POST['password'])){
     if($_POST['password'] == $_POST['password_rep']){
         deleteUser($user_id);
+        deleteUserImages($user_id);
         session_destroy();
     } else {
         $_SESSION['error'] = 'Passwords don\'t match';
