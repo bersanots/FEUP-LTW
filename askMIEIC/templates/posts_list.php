@@ -36,7 +36,7 @@
       <form action="../actions/add_post.php" method="post" enctype="multipart/form-data">
         <h1>Create a new post</h1>
         <label>
-          <input type="text" name="title" placeholder="Title" required="required">
+          <input type="text" name="title" placeholder="Title" required>
         </label>
         <div class="radioButtons">
           <label>Subject:</label>
@@ -51,7 +51,7 @@
                 <?php
               } ?>
               <td>
-                <input type="radio" name="subject" value="<?=$subject['name']?>" required="required">
+                <input type="radio" name="subject" value="<?=$subject['name']?>" required>
                 <p><?=$subject['name']?></p>
               </td>
               <?php $counter++;
@@ -59,7 +59,7 @@
             </tr>
             </table>
         </div>
-        <textarea placeholder="Enter text here..." name="description" required="required" rows="4" cols="42"></textarea>
+        <textarea placeholder="Enter text here..." name="description" rows="4" cols="42" required></textarea>
         <label>
           Picture <input type="file" name="image">
         </label>
@@ -99,12 +99,12 @@
       <span class="subject"><?=getSubjectName($post['subject'])['name']?></span>
       <span class="user"><a href="../pages/profile.php?user=<?=getUser($post['creator'])['id']?>&csrf=<?=$_SESSION['csrf']?>"><?=getUser($post['creator'])['name']?></a></span>
       <span class="date"><?=$post['datetime']?></span>
-      <?php if(getImagePost($post['id']) != 1)?>
-      <img id="profile_pic" src=<?=getImagePost($post['id'])?> alt="Profile picture">
       <a href="../actions/vote_on_post.php?post=<?=$post['id']?>&type=like&csrf=<?=$_SESSION['csrf']?>"><i class="fas fa-arrow-circle-up"></i></a>
       <a href="../actions/vote_on_post.php?post=<?=$post['id']?>&type=dislike&csrf=<?=$_SESSION['csrf']?>"><i class="fas fa-arrow-circle-down"></i></a>
       <?$points=$post['points']; echo $points>0?'+'.$points:$points?>
       <header><h2><?=htmlspecialchars($post['title'])?></h2></header>
+      <?php if(getPostImage($post['id']) != -1) { ?>
+        <img id="profile_pic" src=<?=getPostImage($post['id'])?> alt="Profile picture"><?php } ?>
       <p><?=htmlspecialchars($post['text'])?></p>
   
       <section id="comments">
@@ -117,7 +117,7 @@
       <form>
         <input type="hidden" name="post" value="<?=$post['id']?>">
         <input type="hidden" name="user" value="<?=$_SESSION['id']?>">
-        <textarea placeholder="Add a comment..." name="text" required="required"></textarea >
+        <textarea placeholder="Add a comment..." name="text" required></textarea >
         <input type="submit" value="Reply">
       </form>
       </section>

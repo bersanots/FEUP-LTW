@@ -35,7 +35,7 @@
       <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
     </section>
     <aside id="stats">
-      <img id="profile_pic" src=<?=getImage($userID)?> alt="Profile picture">
+      <img id="profile_pic" src=<?=getUserImage($userID)?> alt="Profile picture">
       <h2>User Statistics:</h2>
       <label>
         <a href="../pages/user_entries.php?user=<?=$userID?>&entry=posts&csrf=<?=$_SESSION['csrf']?>">Posts:</a>

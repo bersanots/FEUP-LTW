@@ -12,10 +12,10 @@
       <h1>Login</h1>
       <form action="../actions/login_action.php" method="post">
         <label>
-          FEUP ID <input type="number" name="id" min="201000000" max="201999999" required="required">
+          FEUP ID <input type="number" name="id" min="201000000" max="201999999" required>
         </label>
         <label>
-          Password <input type="password" name="password" required="required">
+          Password <input type="password" name="password" required>
         </label>
         <input type="submit" value="Login">
       </form>

@@ -26,16 +26,27 @@ function receiveComments(event) {
   let section = document.querySelector('#comments');
   let comments = JSON.parse(this.responseText);
 
-  comments.forEach(element => {
-    let comment = document.createElement('article');
-    comment.classList.add('comment');
-    comment.innerHTML = '<span class="user">' +
-    element.name + '</span><span class="date">' +
-    element.date + '</span><p>' +
-    element.text + '</p>';
-    section.insertBefore(comment, commentForm);
-    document.getElementsByName('text').forEach(element => {
-      element.value = '';
+  let request = new XMLHttpRequest();
+  request.open('GET', '../api/api_get_session.php', true);
+  request.addEventListener('load', function () {
+    let csrf = JSON.parse(this.responseText).csrf;
+
+    comments.forEach(element => {
+      let comment = document.createElement('article');
+      comment.classList.add('comment');
+      comment.innerHTML = 
+      '<a href="../actions/delete_comment.php?comment=' + element.id + '&csrf=' + csrf + '"><i class="fas fa-times-circle"></i></a>&nbsp' +
+      '<span class="id" style="display:none">' + element.id + '</span>' +
+      '<span class="user"><a href="../pages/profile.php?user=' + element.user + '&csrf=' + csrf + '">' + element.name + '</a></span>' +
+      '<span class="date">' + element.datetime + '</span>' +
+      '&nbsp<a href="../actions/vote_on_comment.php?comment='+ element.id + '&type=like&csrf=' + csrf + '"><i class="fas fa-arrow-circle-up"></i></a>' +
+      '&nbsp<a href="../actions/vote_on_comment.php?comment='+ element.id + '&type=dislike&csrf=' + csrf + '"><i class="fas fa-arrow-circle-down"></i></a>&nbsp' + element.points +
+      '<p>' + element.text + '</p>';
+      section.insertBefore(comment, commentForm);
+      document.getElementsByName('text').forEach(element => {
+        element.value = '';
+      });
     });
-  });
+  })
+  request.send();
 }
