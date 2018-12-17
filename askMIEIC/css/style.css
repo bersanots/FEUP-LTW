@@ -280,6 +280,11 @@ body {
   #view_profile ,#edit_profile, #register,#login {
     font-family: "Love Ya Like A Sister", 'Verdana', sans-serif;
   }
+
+  #posts {
+    font-family: 'Verdana', sans-serif;
+    font-size: 1em;
+  }
   
   /* menu colors */
   
@@ -565,6 +570,50 @@ body {
 
   .post {
     margin-bottom: 3em;
+    border: 1px solid #046dd5;
+    background-color: #b5d5e0;
+    border-radius: 10px;
+    padding: 1em;
+
+  }
+
+  #posts > article.post > a:first-child:hover, .comment > a:first-child:hover{
+
+    color:red;
+    transition: color .1s;
+
+  }
+
+  #posts > article.post > a:not(:first-child) i:hover, .comment > a:not(:first-child) i:hover{
+    animation: shake .5s;
+    transform: scale(2);
+
+    color:red;
+    transition: color 1s, transform .6s;
+
+  }
+
+  @keyframes shake {
+    25% {
+      transform: rotate(30deg) scale(1.2);
+    }
+    50% {
+      transform: rotate(-60deg) scale(1.4);
+    }
+    75% {
+      transform: rotate(60deg) scale(1.6);
+    }
+    100% {
+      transform: rotate(-30deg) scale(1.8);
+    }
+  }
+
+  .date{
+    font-style: italic;
+    font-size: 0.8em;
+
+    color:gray;
+
   }
 
   .post > .subject {
@@ -602,6 +651,13 @@ body {
   .post > .comment_num > a {
     color: #000000;
     text-decoration: none;
+    padding: 3px;
+    border-radius:3px;
+  }
+
+  .post > .comment_num > a:hover {
+    background-color: #99b5df;
+    
   }
 
   #comments {
