@@ -11,8 +11,6 @@
 
   upload_image_post(getPostsDesc()[0]['id']);
 
-  echo((getPostsDesc()[0]['id']);
-
   header("Location:".$_SERVER['HTTP_REFERER']."");
 
   function upload_image_post($post_id)

@@ -121,17 +121,17 @@
     }
   }
   
-  function getImage($user_id){
-    $path = "../images/thumbs_medium/$user_id.png";
+  function getUserImage($user_id){
+    $path = "../images/users/thumbs_medium/$user_id.png";
     if(file_exists($path)){
       return $path;
-    } else return "../images/default.png";
+    } else return "../images/users/default.png";
   }
 
-  function getImagePost($post_id){
+  function getPostImage($post_id){
     $path = "../images/posts/thumbs_small/$post_id.png";
     if(file_exists($path)){
       return $path;
-    } else return 1;
+    } else return -1;
   }
 ?>

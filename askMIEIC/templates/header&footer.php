@@ -31,7 +31,7 @@
                     <a href="../pages/register.php">Register</a>
                     <a href="../pages/login.php">Login</a> 
                 <?php } else { ?>
-                    <a href="../pages/profile.php?user=<?=getUserID()?>&csrf=<?=$_SESSION['csrf']?>"><img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture"> Profile</a>
+                    <a href="../pages/profile.php?user=<?=getUserID()?>&csrf=<?=$_SESSION['csrf']?>"><img id="profile_pic" src=<?=getUserImage(getUserID())?> alt="Profile picture"> Profile</a>
                     <a href="../actions/logout_action.php">Logout</a>
                 <?php } ?>
             </div>
@@ -57,11 +57,11 @@
             <h3>
               <?php 
                 if(getUserID() !== null) { ?>
-                  <img id="profile_pic" src=<?=getImage(getUserID())?> alt="Profile picture">
+                  <img id="profile_pic" src=<?=getUserImage(getUserID())?> alt="Profile picture">
                   <a href="../pages/profile.php?user=<?=getUserID()?>&csrf=<?=$_SESSION['csrf']?>"><?php echo getUser(getUserID())['name']?></a>
               <?php } 
                 else {?>
-                  <img id="profile_pic" src="../images/default.png" alt="Profile picture"><a href="../pages/login.php">Profile</a>   
+                  <img id="profile_pic" src="../images/users/default.png" alt="Profile picture"><a href="../pages/login.php">Profile</a>   
               <?php  }?>
             </h3>
             <h5>Last Posts:</h5>
@@ -75,7 +75,7 @@
         <section id="main_section">
           <section id="init_description">
             <article>
-                <h1>ASKMIEIC O que é??</h1>
+                <h1>ASKMIEIC - O que é?</h1>
                 <p> Somos uma plataforma de dúvidas para todos os alunos do MIEIC, feita por alunos para os alunos!</p>
             </article>
           </section>

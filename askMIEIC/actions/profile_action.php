@@ -38,9 +38,9 @@
   {
       if (isset($_FILES['image']['tmp_name'])) {
           // Generate filenames for original, small and medium files
-          $originalFileName = "../images/originals/$user_id.png";
-          $smallFileName = "../images/thumbs_small/$user_id.png";
-          $mediumFileName = "../images/thumbs_medium/$user_id.png";
+          $originalFileName = "../images/users/originals/$user_id.png";
+          $smallFileName = "../images/users/thumbs_small/$user_id.png";
+          $mediumFileName = "../images/users/thumbs_medium/$user_id.png";
 
           // Move the uploaded file to its final destination
           echo $_FILES['image']['tmp_name'];
