@@ -22,7 +22,7 @@
     
     <body>
         <header>
-            <h1>askMIEIC</h1>
+            <h1><a href="../pages/main.php">askMIEIC</a></h1>
             <h2>The place to ask your questions</h2>
             <div id="signup">
                 <a href="../pages/main.php">Home</a>
