@@ -327,8 +327,8 @@
   function getUserPoints($userID){
     global $db;
     try {
-      $stmt = $db->prepare('SELECT SUM(Post.points + Comment.points) AS sum FROM Post JOIN Comment ON Comment.user = Post.creator WHERE user = ?');
-      $stmt->execute(array($userID));
+      $stmt = $db->prepare('SELECT sum1 + sum2 AS sum FROM (SELECT IFNULL(SUM(Post.points),0) AS sum1 FROM Post WHERE creator = ?) JOIN (SELECT IFNULL(SUM(Comment.points),0) AS sum2 FROM Comment WHERE user = ?)');
+      $stmt->execute(array($userID, $userID));
       return $stmt->fetch();
     } 
     catch (PDOException $e) {

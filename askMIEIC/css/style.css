@@ -277,7 +277,7 @@ body {
     font-size: 0.8em;
   }
 
-  #view_profile ,#edit_profile, #register,#login {
+  #view_profile ,#edit_profile, #register,#login, #add_post, #delete_account {
     font-family: "Love Ya Like A Sister", 'Verdana', sans-serif;
   }
   
@@ -304,7 +304,8 @@ body {
   }
 
   /*Register, Log in, edit and save profile buttons*/
-  #register form input[type="submit"]:hover , #login form input[type="submit"]:hover, #view_profile form input[type="submit"]:hover ,#edit_profile form input[type="submit"]:hover{
+  form input[type="submit"]:hover {
+    cursor: pointer;
     background-color: #2a2f33;
   }
 
@@ -313,7 +314,41 @@ body {
     display: flex;
     justify-content: center;
     margin: 1em auto 0;
+  }
 
+  #delete_account {
+    position: absolute;
+    padding-top: 3em;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  #delete_account form{
+    width: 30%;
+    border-style: solid;
+    border-width: thick;
+  }
+
+  #delete_account h2 {
+    text-align: center;
+  }
+
+  .delete_acct_btn {
+    height: 50px;
+    width: 150px;
+    border-radius: 20px;
+    margin-bottom: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    background-color: rgb(117, 21, 21);
+    color: #FFFFFF;
+    font-size: 15px;
+  }
+
+  .delete_acct_btn:hover {
+    opacity:0.9;
   }
   
   /* navigation layout */
@@ -531,11 +566,24 @@ body {
   
   #add_post {
     position: absolute;
-    margin-top: 3em;
-    margin-bottom: 3em;
-    margin-left: 30%;
-    width: 30%;
+    padding-top: 3em;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  #add_post form{
+    width: 30%;
+    border-style: solid;
+    border-width: thick;
+  }
+
+  #add_post h1 {
+    text-align: center;
+  }
+
+  #add_post input[type="submit"]:hover , .post input[type="submit"]:hover {
+    opacity:0.8;
   }
 
   .new_post_btn {
@@ -555,12 +603,19 @@ body {
     opacity:0.9;
   }
 
-  #add_post h1 {
-    text-align: center;
+  .cancel_btn {
+    width: auto;
+    background-color: black;
+    color: white;
+    border: none;
+    margin: 1em;
+    padding: 1em;
+    font-size: 0.9em;
   }
 
-  #add_post input[type="submit"]:hover , .post input[type="submit"]:hover {
-    opacity:0.8;
+  .cancel_btn:hover {
+    cursor: pointer;
+    background-color: #2a2f33;
   }
 
   .post {
@@ -632,22 +687,6 @@ body {
     background-color: #edeff0;
   }
   
-  #comments input {
-    background-color: #edeff0;
-  }
-  
-  #comments input[type=submit] {
-    width: auto;
-  
-    background-color: black;
-    color: white;
-  
-    border: none;
-    margin: 1em;
-    padding: 1em;
-    margin-left: auto;
-  }
-  
   #comments form h2 {
     font-size: 1em;
   }
@@ -667,6 +706,11 @@ body {
     padding: 1px;
     margin: 1px;
     font-weight: bold;
+ }
+
+  label[id="picture"] {   
+   text-align: center;
+   font-weight: bold;
  }
 
   form {

@@ -9,7 +9,8 @@
   $subjectID = getSubjectID($_POST['subject'])['id'];
   createPost($subjectID, $_POST['title'], $_POST['description'], $_SESSION['id']);
 
-  upload_image_post(getPostsDesc()[0]['id']);
+  if(file_exists($_FILES['image']['tmp_name']) && is_uploaded_file($_FILES['image']['tmp_name']))
+    upload_image_post(getPostsDesc()[0]['id']);
 
   header("Location:".$_SERVER['HTTP_REFERER']."");
 

@@ -34,6 +34,28 @@
       </form>
       <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
     </section>
+    <script src="../js/toggle.js" defer></script>
+    <button class="delete_acct_btn" onclick="toggleDeleteAccount()">Delete Account</button>
+    <section id="delete_account" style="display:none">
+      <form action="../actions/delete_account.php" method="post">
+        <h2>Are you sure you want to delete this account?</h2>
+        <label>
+          Type your password <input type="password" name="password" required>
+        </label>
+        <label>
+          Type your password again <input type="password" name="password_rep" required>
+        </label>
+        <table style="width:100%">
+          <tr>
+            <td><button type="button" class="cancel_btn" onclick="toggleDeleteAccount()">Cancel</button></td>
+            <td><input type="submit" value="Confirm"></td>
+          </tr>
+        </table>
+      </form>
+      <p>
+        <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
+      </p>
+    </section>
     <aside id="stats">
       <img id="profile_pic" src=<?=getUserImage($userID)?> alt="Profile picture">
       <h2>User Statistics:</h2>

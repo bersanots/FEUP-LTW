@@ -39,7 +39,7 @@
           <input type="text" name="title" placeholder="Title" required>
         </label>
         <div class="radioButtons">
-          <label>Subject:</label>
+          <label>Subject</label>
           <table style="width:100%">
             <tr>
             <?php
@@ -57,13 +57,18 @@
               <?php $counter++;
               } ?>
             </tr>
-            </table>
+          </table>
         </div>
         <textarea placeholder="Enter text here..." name="description" rows="4" cols="42" required></textarea>
-        <label>
+        <label id="picture">
           Picture <input type="file" name="image">
         </label>
-        <input type="submit" value="Create">
+        <table style="width:100%">
+          <tr>
+            <td><button type="button" class="cancel_btn" onclick="toggleAddPost()">Cancel</button></td>
+            <td><input type="submit" value="Create"></td>
+          </tr>
+        </table>
       </form>
     </section>
 <?php
