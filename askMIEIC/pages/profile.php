@@ -35,7 +35,9 @@
     </section>
 
     <script src="../js/toggle.js" defer></script>
-    <button class="delete_acct_btn" onclick="toggleDeleteAccount()">Delete Account</button>
+    <?php if($userID===getUserID()) { ?>
+      <button class="delete_acct_btn" onclick="toggleDeleteAccount()">Delete Account</button>
+    <?php }?>
 
     <section id="delete_account" style="display:none">
       <form action="../actions/delete_account.php" method="post">
