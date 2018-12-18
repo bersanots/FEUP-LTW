@@ -69,7 +69,7 @@
         <?php echo sizeof(getUserComments($userID))?>
       </label>
       <label>
-        Points: <?php echo getUserPoints($userID)['sum']?>
+        Points: <?php $points=getUserPoints($userID)['sum']; echo $points>0?'+'.$points:$points?>
       </label>
     </aside>
   
