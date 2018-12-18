@@ -33,9 +33,12 @@ body {
 
     margin: auto 1em;
   }
+
+  #init_description {
+    margin-bottom: 3em;
+  }
   
   body > footer {
-
     grid-row: footer;
   }
   
@@ -98,7 +101,7 @@ body {
    /* aside */
    aside#profile  {
     border: 1px solid #046dd5;
-    background-color: #b5d5e0;
+    background-color: #8cc2d4;
   }
 
   aside#profile > div h3 {
@@ -131,9 +134,34 @@ body {
     border-radius: 50%;
   }
 
-  aside#profile > div h5 {
+  aside#profile > div h4 {
     font-style: italic;
     text-align: center;
+  }
+
+  aside#stats  {
+    align-items: center;
+    text-align: center;
+    border: 4px outset #044b92;
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0 auto;
+    padding: 0.4em 0;
+    background-color: #8cc2d4;
+  }
+
+  aside#stats label{
+    font-weight: bold;
+    font-family: "Love Ya Like A Sister" , 'Verdana', sans-serif;
+  }
+
+  aside#stats a{
+    text-decoration: none;
+  }
+
+  aside#stats a:hover{
+    border-bottom: 1px solid blue;
   }
 
   /* navigation */
@@ -284,24 +312,19 @@ body {
   #view_profile ,#edit_profile, #register,#login, #add_post, #delete_account {
     font-family: "Love Ya Like A Sister", 'Verdana', sans-serif;
   }
-
-  #posts {
-    font-family: 'Verdana', sans-serif;
-    font-size: 1em;
-  }
   
   /* menu colors */
   
   #menu li:nth-child(1) {
-    border-top: 5px solid #e1493e;
+    border-top: 5px solid #ebee29;
   }
   
   #menu li:nth-child(2) {
-    border-top: 5px solid #8aba56;
+    border-top: 5px solid #d83c3c;
   }
   
   #menu li:nth-child(3) {
-    border-top: 5px solid #5b4282;
+    border-top: 5px solid #40df3b;
   }
   
   #menu li:nth-child(4) {
@@ -391,12 +414,16 @@ body {
     text-decoration: none;
     color:blue;
   }
+
   .user a:hover{
     border-bottom: 1px solid blue;
   }
 
   .date {
     float: right;
+    font-style: italic;
+    font-size: 0.8em;
+    color:gray;
   }
 
   textarea {
@@ -409,6 +436,20 @@ body {
     position: relative;
     margin: 1em;
     display: inline-block;
+    font-family: 'Verdana', sans-serif;
+    font-size: 1em;
+  }
+
+  #posts > article.post > a:first-child:hover, .comment > a:first-child:hover{
+    color:red;
+    transition: color .1s;
+  }
+
+  #posts > article.post > a:not(:first-child) i:hover, .comment > a:not(:first-child) i:hover{
+    animation: shake .5s;
+    transform: scale(2);
+    color:red;
+    transition: color 1s, transform .6s;
   }
   
   #add_post {
@@ -437,7 +478,7 @@ body {
     height: 100px;
     width: 200px;
     border-radius: 20px;
-    margin-top: 3em;
+    margin-top: 1em;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
@@ -455,6 +496,7 @@ body {
     background-color: black;
     color: white;
     border: none;
+    border-radius: 10px;
     margin: 1em;
     padding: 1em;
     font-size: 0.9em;
@@ -465,52 +507,28 @@ body {
     background-color: #2a2f33;
   }
 
+  form[id="sortBy"] {
+    background-color: white;
+    border: 1px solid #046dd5;
+    border-radius: 10px;
+    color: black;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    width: 30em;
+    height: 5em;
+    padding: 0em;
+  }
+
+  form[id="sortBy"] label {
+    font-weight: bold;
+  }
+
   .post {
     margin-bottom: 3em;
     border: 1px solid #046dd5;
     background-color: #b5d5e0;
     border-radius: 10px;
     padding: 1em;
-
-  }
-
-  #posts > article.post > a:first-child:hover, .comment > a:first-child:hover{
-
-    color:red;
-    transition: color .1s;
-
-  }
-
-  #posts > article.post > a:not(:first-child) i:hover, .comment > a:not(:first-child) i:hover{
-    animation: shake .5s;
-    transform: scale(2);
-
-    color:red;
-    transition: color 1s, transform .6s;
-
-  }
-
-  @keyframes shake {
-    25% {
-      transform: rotate(30deg) scale(1.2);
-    }
-    50% {
-      transform: rotate(-60deg) scale(1.4);
-    }
-    75% {
-      transform: rotate(60deg) scale(1.6);
-    }
-    100% {
-      transform: rotate(-30deg) scale(1.8);
-    }
-  }
-
-  .date{
-    font-style: italic;
-    font-size: 0.8em;
-
-    color:gray;
-
   }
 
   .post > .subject {
@@ -548,13 +566,6 @@ body {
   .post > .comment_num > a {
     color: #000000;
     text-decoration: none;
-    padding: 3px;
-    border-radius:3px;
-  }
-
-  .post > .comment_num > a:hover {
-    background-color: #99b5df;
-    
   }
 
   #comments {
@@ -631,6 +642,7 @@ body {
     border: none;
     background-color: white;
     color: black;
+    border-radius: 10px;
     border-bottom: 1px solid black;
     margin-top: 1em;
     width: 100%;
@@ -657,4 +669,47 @@ body {
   #register h1, #login h1 {
     text-align: center;
   }
+
+  #messages {
+    position: absolute;
+    padding: 1em;
+    margin-top: 3em;
+    margin-left: 30%;
+    color: red;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 20%;
+    border-style: solid;
+    border-width: thick;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  #no_posts {
+    padding: 1em;
+    margin-top: 3em;
+    margin-left: 33%;
+    color: red;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 30%;
+    border-style: solid;
+    border-width: thick;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  @keyframes shake {
+    25% {
+      transform: rotate(30deg) scale(1.2);
+    }
+    50% {
+      transform: rotate(-60deg) scale(1.4);
+    }
+    75% {
+      transform: rotate(60deg) scale(1.6);
+    }
+    100% {
+      transform: rotate(-30deg) scale(1.8);
+    }
+  }
+
   

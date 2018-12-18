@@ -32,10 +32,11 @@
           <input type="submit" value="Edit">
         <?php }?>
       </form>
-      <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
     </section>
+
     <script src="../js/toggle.js" defer></script>
     <button class="delete_acct_btn" onclick="toggleDeleteAccount()">Delete Account</button>
+
     <section id="delete_account" style="display:none">
       <form action="../actions/delete_account.php" method="post">
         <h2>Are you sure you want to delete this account?</h2>
@@ -52,10 +53,8 @@
           </tr>
         </table>
       </form>
-      <p>
-        <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
-      </p>
     </section>
+
     <aside id="stats">
       <img id="profile_pic" src=<?=getUserImage($userID)?> alt="Profile picture">
       <h2>User Statistics:</h2>

@@ -74,8 +74,20 @@
   function getPostsByMostLiked() {
     global $db;
     try {
-      $stmt = $db->prepare('SELECT * FROM Post ORDER BY points DESC');
+      $stmt = $db->prepare('SELECT * FROM Post ORDER BY points DESC, datetime DESC');
       $stmt->execute();
+      return $stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+      return null;
+    }
+  }
+
+  function getYearPostsByMostLiked($year) {
+    global $db;
+    try {
+      $stmt = $db->prepare('SELECT Post.*, Subject.year FROM Post JOIN Subject ON Post.subject = Subject.id WHERE year = ? ORDER BY points DESC, datetime DESC');
+      $stmt->execute(array($year));
       return $stmt->fetchAll();
     }
     catch(PDOException $e) {
@@ -86,19 +98,7 @@
   function getCommentsFromPost($postID) {
     global $db;
     try {
-      $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ? ORDER BY datetime');
-      $stmt->execute(array($postID));
-      return $stmt->fetchAll();
-    }
-    catch(PDOException $e) {
-      return null;
-    }
-  }
-
-  function getCommentsFromPostByOldest($postID) {
-    global $db;
-    try {
-      $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ? ORDER BY datetime');
+      $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ?');
       $stmt->execute(array($postID));
       return $stmt->fetchAll();
     }
@@ -110,7 +110,7 @@
   function getCommentsFromPostByMostLiked($postID) {
     global $db;
     try {
-      $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ? ORDER BY points DESC');
+      $stmt = $db->prepare('SELECT * FROM Comment WHERE post = ? ORDER BY points DESC, datetime DESC');
       $stmt->execute(array($postID));
       return $stmt->fetchAll();
     }
@@ -336,11 +336,12 @@
     }
   }
 
-  function editPost($id, $title){
+  function getYear($subject){
     global $db;
     try {
-      $stmt = $db->prepare('UPDATE Post SET title = ? WHERE id = ?');
-      return $stmt->execute(array($title, $id));
+      $stmt = $db->prepare('SELECT year FROM Subject WHERE name = ?');
+      $stmt->execute(array($subject));
+      return $stmt->fetch();
     }
     catch(PDOException $e) {
       return false;

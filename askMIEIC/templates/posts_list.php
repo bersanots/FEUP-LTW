@@ -10,7 +10,34 @@
      * each post. Uses @year_subjects as options
      * for the radio buttons on the #add_post section
      */ ?>
+  <script src="../js/sort_posts.js" defer></script>
+
   <section id="posts">
+   <form id="sortBy">
+    <table style="width:100%">
+     <tr>
+      <td>
+       <label>Sort by:</label>
+      </td>
+      <td>
+       <input type="radio" name="sort" value="recent" checked>
+      </td>
+      <td>
+       <p>&nbspMost recent</p>
+      </td>
+      <td>
+        <input type="radio" name="sort" value="liked">
+      </td>
+      <td>
+       <p>&nbspMost liked</p>
+      </td>
+      <td>
+       <input type="submit" value="Sort">
+      </td>
+     </tr>
+    </table>
+    <input type="hidden" name="year" value="<?=($year_subjects!==null ? getYear($year_subjects[0]['name'])['year'] : 0)?>">
+   </form>
   <?php
     if (isset($_SESSION['error'])) {
         echo htmlentities($_SESSION['error']);
@@ -21,13 +48,15 @@
         foreach ($posts as $post) {
             draw_post_title($post);
         }
-    } else {
-        echo "There are no posts in this section!";
-    } ?>
+    } else { ?>
+        <section id="no_posts">
+          <?= "There are no posts in this section!" ?>
+        </section>
+  <?php } ?>
   </section>
 
   <?php 
-    if ($year_subjects) {
+    if($year_subjects) {
   ?>
     <script src="../js/toggle.js" defer></script>
     <button class="new_post_btn" onclick="toggleAddPost()">Add New Post</button>
@@ -98,9 +127,10 @@
  * draw_comment function to draw each comment.
  */ 
 ?>
+  <script src="../js/add_comment.js" defer></script>
+
   <section id="posts">
     <article class="post">
-      <p><?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?></p>
       <span class="subject"><?=getSubjectName($post['subject'])['name']?></span>
       <span class="user"><a href="../pages/profile.php?user=<?=getUser($post['creator'])['id']?>&csrf=<?=$_SESSION['csrf']?>"><?=getUser($post['creator'])['name']?></a></span>
       <span class="date"><?=$post['datetime']?></span>
@@ -119,7 +149,7 @@
             draw_comment($comment);
         ?>
 
-      <form>
+      <form id="addComment">
         <input type="hidden" name="post" value="<?=$post['id']?>">
         <input type="hidden" name="user" value="<?=$_SESSION['id']?>">
         <textarea placeholder="Add a comment..." name="text" required></textarea >

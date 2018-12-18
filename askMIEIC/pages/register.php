@@ -27,9 +27,6 @@
       </label>
       <input type="submit" value="Register">
     </form>
-    <p>
-      <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
-    </p>
   </section>
     
     <?php draw_footer(); ?>

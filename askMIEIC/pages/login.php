@@ -19,9 +19,6 @@
       </label>
       <input type="submit" value="Login">
     </form>
-    <p>
-      <?php if(isset($_SESSION['error'])) echo htmlentities($_SESSION['error']); unset($_SESSION['error'])?>
-    </p>
   </section>
   
   <?php 

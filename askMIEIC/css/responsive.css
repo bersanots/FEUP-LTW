@@ -118,41 +118,6 @@
       opacity: 0;
       transition: all .3s ease-in-out;
     }
-    
-    #menu li:nth-child(1) {
-      border-top: none;
-      border-left: 5px solid #e1493e;
-      border-bottom: 1px solid #e1493e;
-      border-right: 1px solid #e1493e;
-    }
-  
-    #menu li:nth-child(2) {
-      border-top: none;
-      border-left: 5px solid #8aba56;
-      border-bottom: 1px solid #8aba56;
-      border-right: 1px solid #8aba56;
-    }
-  
-    #menu li:nth-child(3) {
-      border-top: none;
-      border-left: 5px solid #5b4282;
-      border-bottom: 1px solid #5b4282;
-      border-right: 1px solid #5b4282;
-    }
-  
-    #menu li:nth-child(4) {
-      border-top: none;
-      border-left: 5px solid #ff8932;
-      border-bottom: 1px solid #ff8932;
-      border-right: 1px solid #ff8932;
-    }
-  
-    #menu li:nth-child(5) {
-      border-top: none;
-      border-left: 5px solid #19b6e9;
-      border-bottom: 1px solid #19b6e9;
-      border-right: 1px solid #19b6e9;
-    }
   
     /*objective image must adjust to page*/
     #objective img {
