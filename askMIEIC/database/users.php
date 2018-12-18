@@ -122,7 +122,7 @@
   }
   
   function getUserImage($user_id){
-    $path = "../images/users/thumbs_medium/$user_id.png";
+    $path = "../images/users/thumbs_small/$user_id.png";
     if(file_exists($path)){
       return $path;
     } else return "../images/users/default.png";
