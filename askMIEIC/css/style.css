@@ -381,180 +381,18 @@ body {
     display: none;
   }
 
-  /* responsive */
-
-@media (max-width: 60em) {
-    body{ 
-      width: 100%;
-      grid-template-columns: [start] 4fr [end];
-      grid-template-rows: [start] auto [nav] auto [news] auto [footer] auto [end];
-    }
-  
-    #main_section {
-      margin: 0 0 1em;
-    }
-  
-    aside {
-      display: none;  
-    }
-  
-    body > footer {
-      margin: 0;  
-    }
-
-    /*objective image must adjust to page*/
-    #objective img {
-
-      max-width: 60em;
-      max-height: 30em;
-    }
-    /*little profile pickture before header 'Profile' */
-    body > header #signup{
-      display:flex;
-      align-items: flex-start;
-  
-    }
-    body > header #signup a img {
-      display: block;
-      max-width: 30px;
-      max-height: 15px;
-      margin-right:0.2em;
-  
-      border-radius: 50%;
-    }
-  
-    body > header #signup a:nth-child(2) {
-      display:flex;
-      align-items: center;
-    }
-  }
-  
-  @media (max-width: 30em) {
-    body > header {
-      display: block;
-    }
-  
-    body > header h1 {
-      font-size: 1.5em; 
-    } 
-
-    header a {
-      font-size: 0.7em;
-    }
-  
-    body > header h2 {
-      display: none;
-    }
-
-    .hamburger {
-      display: block;
-      color: white;
-      position: relative;
-      bottom: 3em;
-      right: 90%;
-      float: right;
-      
-    }
-  
-    .hamburger:before {
-      content:'\2630';
-    }
-
-    .hamburger:hover {
-      opacity: 0.5;
-    }
-  
-    #menu ul {
-      flex-direction: column;
-      margin: 0;
-      padding: 0;
-
-    }
-
-    #hamburger:checked + .hamburger + ul li{
-      max-height: 1em;
-      padding: 1em;
-      opacity: 1;
-    }
-
-    #hamburger:checked + .hamburger:before{
-      content:'\25BD';
-    }
-  
-    #menu li {
-      max-height: 0;
-      padding: 0 1em;
-      background-color: #edeff0;
-      text-align: left;
-      opacity: 0;
-      transition: all .3s ease-in-out;
-    }
-    
-    #menu li:nth-child(1) {
-      border-top: none;
-      border-left: 5px solid #e1493e;
-      border-bottom: 1px solid #e1493e;
-      border-right: 1px solid #e1493e;
-    }
-  
-    #menu li:nth-child(2) {
-      border-top: none;
-      border-left: 5px solid #8aba56;
-      border-bottom: 1px solid #8aba56;
-      border-right: 1px solid #8aba56;
-    }
-  
-    #menu li:nth-child(3) {
-      border-top: none;
-      border-left: 5px solid #5b4282;
-      border-bottom: 1px solid #5b4282;
-      border-right: 1px solid #5b4282;
-    }
-  
-    #menu li:nth-child(4) {
-      border-top: none;
-      border-left: 5px solid #ff8932;
-      border-bottom: 1px solid #ff8932;
-      border-right: 1px solid #ff8932;
-    }
-  
-    #menu li:nth-child(5) {
-      border-top: none;
-      border-left: 5px solid #19b6e9;
-      border-bottom: 1px solid #19b6e9;
-      border-right: 1px solid #19b6e9;
-    }
-  
-    /*objective image must adjust to page*/
-    #objective img {
-
-      max-width: 40em;
-      max-height: 15em;
-    }
-
-    /*little profile picture before header 'Profile' */
-    body > header #signup{
-      display:flex;
-      align-items: flex-start;
-  
-    }
-    body > header #signup a img {
-      display: block;
-      max-width: 30px;
-      max-height: 15px;
-      margin-right:0.2em;
-  
-      border-radius: 50%;
-    }
-  
-    body > header #signup a:nth-child(2) {
-      display:flex;
-      align-items: center;
-    }
-  }
+  /*comment and years section*/
 
   .user {
     font-style: italic;
+  }
+
+  .user a{
+    text-decoration: none;
+    color:blue;
+  }
+  .user a:hover{
+    border-bottom: 1px solid blue;
   }
 
   .date {
@@ -819,11 +657,4 @@ body {
   #register h1, #login h1 {
     text-align: center;
   }
-  
-  @media (max-width: 30em) {
-    #register, #login {
-      background-color: white;
-    }
-  }
-
   
